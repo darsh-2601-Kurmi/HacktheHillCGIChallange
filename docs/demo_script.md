@@ -6,8 +6,8 @@
 2. Open `http://localhost:8000/desk` (the agent desk), press **F11** (full screen), and set browser zoom to **100%** (Ctrl+0).
    The screen is built for 1366×768 and up; at 1366×768 everything in this script is visible without scrolling.
 3. Click **Reset demo** (top right). The centre panel says "No case open".
-4. Open `docs/report.html` in a second tab (the diagnosis pages, straight from disk) and `/impact` in another
-   as the live-scenario backup.
+4. Open the Power BI report (`powerbi/Northwind.pbip`, refreshed, or your saved .pbix) for the diagnosis pages,
+   and `/impact` in a second browser tab as the live-scenario backup.
 5. Optional opener: `http://localhost:8000/` (the landing page) in a third tab.
    If the laptop has no WebGL, the desk switches to its flat view by itself, and the script below still works.
 

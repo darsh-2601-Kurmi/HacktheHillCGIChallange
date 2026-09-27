@@ -1,4 +1,4 @@
-"""Power BI Project (PBIP) version of the diagnosis report: open powerbi/Northwind.pbip in Power BI Desktop,
+"""Power BI Project (PBIP): the nine-page Northwind diagnosis. Open powerbi/Northwind.pbip in Power BI Desktop,
 click Refresh, then File > Save as to get a .pbix.
 
     python run.py pbip        writes powerbi/ (semantic model + nine-page report, light theme)
@@ -6,7 +6,7 @@ click Refresh, then File > Save as to get a .pbix.
 The semantic model (model.bim, TMSL) loads the CSVs as they are: headers promoted, types set, nothing else.
 The DataFolder parameter holds the absolute path of data/; change it in Transform data > Manage parameters if
 the project moves, or rerun this command. The report is written in PBIR (the documented JSON format), one file
-per page and visual. Page titles quote numbers from src/report.facts(), computed from the same files.
+per page and visual. Page titles quote numbers from src/facts.py, computed from the same files.
 """
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ import uuid
 
 import pandas as pd
 
-from . import report
+from .facts import facts
 from .config import DATA, EXPORTS, RAW, RAW_FILES, REGIONS, ROOT, SMART_REGIONS
 
 OUT = ROOT / "powerbi"
@@ -750,7 +750,7 @@ def _clear(out):
 
 
 def build(out=OUT) -> list[Page]:
-    F = report.facts()
+    F = facts()
     _clear(out)
     sm, rp = out / f"{NAME}.SemanticModel", out / f"{NAME}.Report"
     _write(out / f"{NAME}.pbip", {"$schema": f"{SCHEMA}/pbip/pbipProperties/1.0.0/schema.json", "version": "1.0",

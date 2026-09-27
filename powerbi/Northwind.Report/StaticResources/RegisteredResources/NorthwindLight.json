@@ -1,0 +1,98 @@
+{
+  "name": "Northwind light",
+  "dataColors": [
+    "#2A78D6",
+    "#E0612B",
+    "#138A61",
+    "#EDA100",
+    "#D0508C",
+    "#6B5BD6",
+    "#7D8790",
+    "#0F6283"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#0D1B26",
+  "tableAccent": "#2A78D6",
+  "good": "#138A61",
+  "neutral": "#7D8790",
+  "bad": "#C2302A",
+  "textClasses": {
+    "callout": {
+      "fontSize": 26,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#0D1B26"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#0D1B26"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#0D1B26"
+    },
+    "label": {
+      "fontSize": 10,
+      "fontFace": "Segoe UI",
+      "color": "#3F4D59"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#D2DAE0"
+              }
+            },
+            "radius": 8
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#E9EEF1"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#E9EEF1"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

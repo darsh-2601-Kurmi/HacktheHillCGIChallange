@@ -94,7 +94,7 @@ const all = await api("/scenarios");
 meta = { scenarios: all.scenarios.map(s => ({ id: s.id, name: s.name, note: s.note, levers: s.levers })),
          levers: all.levers, baseline: all.baseline, score_model: all.score_model };
 statusQuo = all.scenarios.find(s => s.id === "status_quo");
-$("#foot").textContent = `Same engine and assumptions as data/exports/scenarios.csv and lever_grid.csv (and docs/report.html). ` +
+$("#foot").textContent = `Same engine and assumptions as data/exports/scenarios.csv and lever_grid.csv (and the Power BI project). ` +
   `Baseline ${all.baseline.month}: ${all.baseline.avg_days_to_close} days, score ${all.baseline.regulator_score} actual ` +
   `(model at 38.2 days: ${fmt(all.score_model.intercept + all.score_model.slope_per_day * all.baseline.avg_days_to_close, 2)}). ` +
   `Status quo line is backlog-aware: on the plan method it stays flat.`;

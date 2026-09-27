@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "answers_ai",
   "position": {
     "x": 24,
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "ai_pilot.Month start",
-              "nativeQueryRef": "Month start",
-              "active": true
+              "nativeQueryRef": "Month start"
             }
           ]
         },
@@ -97,7 +96,8 @@
             },
             "direction": "Ascending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
@@ -204,6 +204,9 @@
       ],
       "dataPoint": [
         {
+          "selector": {
+            "metadata": "_Measures.Containment"
+          },
           "properties": {
             "fill": {
               "solid": {
@@ -216,12 +219,12 @@
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "_Measures.Containment"
           }
         },
         {
+          "selector": {
+            "metadata": "_Measures.Repeat contact in 7 days"
+          },
           "properties": {
             "fill": {
               "solid": {
@@ -234,12 +237,12 @@
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "_Measures.Repeat contact in 7 days"
           }
         },
         {
+          "selector": {
+            "metadata": "_Measures.Complaint after session"
+          },
           "properties": {
             "fill": {
               "solid": {
@@ -252,9 +255,6 @@
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "_Measures.Complaint after session"
           }
         }
       ]

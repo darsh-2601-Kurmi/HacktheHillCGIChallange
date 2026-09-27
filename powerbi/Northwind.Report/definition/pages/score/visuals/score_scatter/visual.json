@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "score_scatter",
   "position": {
     "x": 24,
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "backlog_month.month",
-              "nativeQueryRef": "month",
-              "active": true
+              "nativeQueryRef": "month"
             }
           ]
         },
@@ -47,7 +46,6 @@
               },
               "queryRef": "_Measures.Avg days (KPI)",
               "nativeQueryRef": "Avg days (KPI)",
-              "active": true,
               "displayName": "Days to close"
             }
           ]
@@ -271,7 +269,7 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "0.0D"
                 }
               }
             }
@@ -337,26 +335,6 @@
               "expr": {
                 "Literal": {
                   "Value": "10.0D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dropShadow": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "11D"
                 }
               }
             }

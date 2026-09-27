@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "billing_regions",
   "position": {
     "x": 776,
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "Regions.region",
-              "nativeQueryRef": "region",
-              "active": true
+              "nativeQueryRef": "region"
             }
           ]
         },
@@ -66,7 +65,8 @@
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
@@ -179,19 +179,6 @@
           }
         },
         {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E0612B'"
-                    }
-                  }
-                }
-              }
-            }
-          },
           "selector": {
             "data": [
               {
@@ -217,9 +204,7 @@
                 }
               }
             ]
-          }
-        },
-        {
+          },
           "properties": {
             "fill": {
               "solid": {
@@ -232,7 +217,9 @@
                 }
               }
             }
-          },
+          }
+        },
+        {
           "selector": {
             "data": [
               {
@@ -258,6 +245,19 @@
                 }
               }
             ]
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E0612B'"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ]

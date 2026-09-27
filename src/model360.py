@@ -1,4 +1,4 @@
-"""Phase 1b: joined views for the diagnosis report and the scenario engine.
+"""Phase 1b: joined views for the Power BI project and the scenario engine.
 
 Run:  python -m src.model360   (after src.load)
 Builds tables complaint_360, region_month, segment_summary, backlog_month

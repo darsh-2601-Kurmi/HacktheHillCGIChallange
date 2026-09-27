@@ -4,7 +4,7 @@
     python run.py data       rebuild northwind.db and every export from data/raw
     python run.py test       run the test suite
     python run.py valuecase  write docs/value_case.md (refuses while a cost is TBD)
-    python run.py report     write docs/report.html, the multi-page diagnosis report (opens offline)
+    python run.py pbip       write powerbi/, the Power BI project (open powerbi/Northwind.pbip, then Refresh)
     python run.py reset      clear demo cases and bill corrections
 """
 import subprocess
@@ -25,13 +25,9 @@ def main(cmd: str = "run") -> int:
     elif cmd == "valuecase":
         from src.valuecase import main as vc
         return vc()
-    elif cmd == "report":
-        from src.report import main as rep
-        rc = rep()
-        if "--no-browser" not in sys.argv:
-            from src.report import OUT
-            webbrowser.open(OUT.as_uri())
-        return rc
+    elif cmd == "pbip":
+        from src.pbip import main as pbip
+        return pbip()
     elif cmd == "reset":
         from src import cases
         from src.config import connect

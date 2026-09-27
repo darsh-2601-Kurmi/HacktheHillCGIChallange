@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "transfers_intake",
   "position": {
     "x": 24,
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "complaint_360.Intake system",
-              "nativeQueryRef": "Intake system",
-              "active": true
+              "nativeQueryRef": "Intake system"
             }
           ]
         },
@@ -66,7 +65,8 @@
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
@@ -179,19 +179,6 @@
           }
         },
         {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#2A78D6'"
-                    }
-                  }
-                }
-              }
-            }
-          },
           "selector": {
             "data": [
               {
@@ -217,6 +204,19 @@
                 }
               }
             ]
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2A78D6'"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ]

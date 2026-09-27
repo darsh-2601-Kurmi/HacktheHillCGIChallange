@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import time
 
-from . import cases, load, model360, report, scenario, synth_accounts, web_exports
+from . import cases, load, model360, scenario, synth_accounts, web_exports
 from .config import connect
 
 
@@ -15,7 +15,6 @@ def build_all() -> None:
     scenario.get_calibration.cache_clear()
     scenario.export()        # phase 2: scenarios.csv, lever_grid.csv, calibration.csv
     web_exports.export()     # landing page: web/static/data/regions.json
-    report.build()           # docs/report.html, the multi-page diagnosis report
     con = connect()
     cases.reset(con)         # phase 10: clean OneCase store
     con.close()

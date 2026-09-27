@@ -1,20 +1,12 @@
-"""Diagnosis report (docs/report.html): every headline number, and the file is self-contained."""
-import json
-import re
-
+"""Every headline number quoted by the Power BI pages (src/facts.py)."""
 import pytest
 
-from src import report, svgchart
+from src.facts import facts
 
 
 @pytest.fixture(scope="module")
 def F():
-    return report.facts()
-
-
-@pytest.fixture(scope="module")
-def page(F):
-    return report.render(F)
+    return facts()
 
 
 def test_volume_and_transfers(F):
@@ -67,24 +59,3 @@ def test_scenarios_and_what_if(F):
     assert rows["0|0|0|0"][:2] == pytest.approx([2.68, 1.93], abs=5e-3) and rows["0|0|0|0"][3:] == [2271, 0]
     assert rows["100|50|50|0"] == pytest.approx([3.23, 4.76, 30.3, 231, 525_342], abs=5e-3)
     assert rows["100|100|100|35"][0] == pytest.approx(3.41, abs=5e-3) and rows["100|100|100|35"][4] == 754_461
-
-
-def test_page_is_self_contained(page):
-    assert page.count('class="page"') == 9
-    assert not re.search(r"https?://", page), "the report must not reference anything online"
-    assert "<link" not in page and "<script src" not in page and "url(" not in page
-    assert "NaN" not in page and not re.search(r'[=,\s]-?(nan|inf)[",\s]', page)   # no broken coordinates
-    data = json.loads(page.split('id="whatif-data">', 1)[1].split("</script>", 1)[0])
-    assert len(data["rows"]) == 375 and data["today"] == 2.58
-
-
-def test_build_writes_file(tmp_path):
-    out = tmp_path / "report.html"
-    report.build(out)
-    assert out.read_text(encoding="utf-8").startswith("<!doctype html>")
-
-
-def test_nice_ticks():
-    assert svgchart.nice(2.58, 4.3) == (2.5, 4.5, [2.5, 3.0, 3.5, 4.0, 4.5])
-    assert svgchart.nice(9.1, 38.2, zero=True) == (0, 40, [0, 10, 20, 30, 40])
-    assert svgchart.fixed(1, 5, 4) == (1, 5, [1, 2, 3, 4, 5])

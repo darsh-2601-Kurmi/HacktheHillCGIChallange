@@ -3,9 +3,9 @@
   "name": "billing_k1",
   "position": {
     "x": 776,
-    "y": 206,
+    "y": 206.0,
     "z": 4000,
-    "height": 102,
+    "height": 102.0,
     "width": 480,
     "tabOrder": 4000
   },

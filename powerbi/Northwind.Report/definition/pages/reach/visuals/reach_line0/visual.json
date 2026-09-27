@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "reach_line0",
   "position": {
     "x": 24,
@@ -27,26 +27,7 @@
                 }
               },
               "queryRef": "scenarios.Month start",
-              "nativeQueryRef": "Month start",
-              "active": true
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "scenarios"
-                    }
-                  },
-                  "Property": "Scenario"
-                }
-              },
-              "queryRef": "scenarios.Scenario",
-              "nativeQueryRef": "Scenario"
+              "nativeQueryRef": "Month start"
             }
           ]
         },
@@ -68,6 +49,24 @@
               "displayName": "Score"
             }
           ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "scenarios"
+                    }
+                  },
+                  "Property": "Scenario"
+                }
+              },
+              "queryRef": "scenarios.Scenario",
+              "nativeQueryRef": "Scenario"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -85,7 +84,8 @@
             },
             "direction": "Ascending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
@@ -192,19 +192,6 @@
       ],
       "dataPoint": [
         {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#E0612B'"
-                    }
-                  }
-                }
-              }
-            }
-          },
           "selector": {
             "data": [
               {
@@ -230,22 +217,22 @@
                 }
               }
             ]
-          }
-        },
-        {
+          },
           "properties": {
             "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2A78D6'"
+                      "Value": "'#E0612B'"
                     }
                   }
                 }
               }
             }
-          },
+          }
+        },
+        {
           "selector": {
             "data": [
               {
@@ -271,22 +258,22 @@
                 }
               }
             ]
-          }
-        },
-        {
+          },
           "properties": {
             "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#138A61'"
+                      "Value": "'#2A78D6'"
                     }
                   }
                 }
               }
             }
-          },
+          }
+        },
+        {
           "selector": {
             "data": [
               {
@@ -312,22 +299,22 @@
                 }
               }
             ]
-          }
-        },
-        {
+          },
           "properties": {
             "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#D0508C'"
+                      "Value": "'#138A61'"
                     }
                   }
                 }
               }
             }
-          },
+          }
+        },
+        {
           "selector": {
             "data": [
               {
@@ -353,22 +340,22 @@
                 }
               }
             ]
-          }
-        },
-        {
+          },
           "properties": {
             "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#7D8790'"
+                      "Value": "'#D0508C'"
                     }
                   }
                 }
               }
             }
-          },
+          }
+        },
+        {
           "selector": {
             "data": [
               {
@@ -394,11 +381,27 @@
                 }
               }
             ]
+          },
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7D8790'"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ],
       "y1AxisReferenceLine": [
         {
+          "selector": {
+            "id": "1"
+          },
           "properties": {
             "show": {
               "expr": {
@@ -485,9 +488,6 @@
                 }
               }
             }
-          },
-          "selector": {
-            "id": "1"
           }
         }
       ]
