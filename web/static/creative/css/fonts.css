@@ -1,0 +1,6 @@
+/* The theme's two Google fonts (Merriweather, Merriweather Sans; SIL OFL), served from here so the page works offline */
+@font-face { font-family: "Merriweather"; font-style: normal; font-weight: 300; font-display: swap; src: url("fonts/merriweather-latin-300-normal.woff2") format("woff2"); }
+@font-face { font-family: "Merriweather"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/merriweather-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Merriweather"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/merriweather-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Merriweather Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/merriweather-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Merriweather Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/merriweather-sans-latin-700-normal.woff2") format("woff2"); }

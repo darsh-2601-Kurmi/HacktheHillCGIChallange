@@ -22,14 +22,14 @@ function renderLevers() {
     const spec = meta.levers[l.key];
     return `<div class="lever"><div class="top"><label for="${l.q}">${esc(spec.label.replace(/ \(.*\)/, ""))}</label>
       <output id="${l.q}-out"></output></div>
-      <input type="range" id="${l.q}" min="${spec.min}" max="${spec.max}" step="${l.pct ? 0.05 : 1}" value="${spec.default}">
+      <input type="range" class="form-range" id="${l.q}" min="${spec.min}" max="${spec.max}" step="${l.pct ? 0.05 : 1}" value="${spec.default}">
       <small>${esc(l.note)}</small></div>`; }).join("");
   LEVERS.forEach(l => $("#" + l.q).addEventListener("input", () => { markPreset(null); update(); }));
 }
 
 function renderPresets() {
   $("#presets").innerHTML = meta.scenarios.map(s =>
-    `<button type="button" data-id="${s.id}" aria-pressed="false" title="${esc(s.note)}">${esc(s.name)}</button>`).join("");
+    `<button type="button" class="btn btn-outline-dark rounded-pill" data-id="${s.id}" aria-pressed="false" title="${esc(s.note)}">${esc(s.name)}</button>`).join("");
   $("#presets").addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
     const s = meta.scenarios.find(x => x.id === b.dataset.id);

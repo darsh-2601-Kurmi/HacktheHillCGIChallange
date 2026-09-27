@@ -35,11 +35,13 @@ const day = d => d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric
 function renderIntake() {
   const m = state.meta;
   $("#demo-tiles").innerHTML = m.demo.map(d =>
-    `<button type="button" data-label="${d.label}" aria-pressed="false" aria-label="Demo customer ${d.label}" title="${esc(d.story)}">${d.label}</button>`).join("");
+    `<button type="button" class="btn btn-outline-dark" data-label="${d.label}" aria-pressed="false" aria-label="Demo customer ${d.label}" title="${esc(d.story)}">${d.label}</button>`).join("");
   $("#channels").innerHTML = m.channels.map((c, i) =>
-    `<label><input type="radio" name="channel" value="${esc(c)}" ${i === 0 ? "checked" : ""}><span>${esc(CHANNEL_LABEL[c] || c)}</span></label>`).join("");
+    `<input type="radio" class="btn-check" name="channel" id="ch-${i}" value="${esc(c)}" ${i === 0 ? "checked" : ""}>
+     <label class="btn btn-outline-primary rounded-pill" for="ch-${i}">${esc(CHANNEL_LABEL[c] || c)}</label>`).join("");
   $("#priorities").innerHTML = m.priorities.map(p =>
-    `<label><input type="radio" name="priority" value="${p}" ${p === "P3" ? "checked" : ""}><span>${p}</span></label>`).join("");
+    `<input type="radio" class="btn-check" name="priority" id="pr-${p}" value="${p}" ${p === "P3" ? "checked" : ""}>
+     <label class="btn btn-outline-primary rounded-pill" for="pr-${p}">${p}</label>`).join("");
   $("#category").innerHTML = m.categories.map(c => `<option>${esc(c)}</option>`).join("");
   $("#account-list").innerHTML = m.demo.map(d => `<option value="${d.account_id}">Demo ${d.label} · ${d.region}</option>`).join("");
 
@@ -156,7 +158,7 @@ function checkCard(c) {
       ${amt != null ? `<div class="amount">$${fmt(Math.abs(amt), 2)}<small>${amt > 0 ? "over-billed" : "under-billed"}</small></div>` : ""}
     </div>
     <div class="readout"><p class="eyebrow">Read to the customer</p>${esc(shown.explanation)}</div>
-    ${canAct ? `<div class="act-row"><button class="btn" data-act="${action.code}">${esc(action.label)}${action.unit_cost ? ` · $${fmt(action.unit_cost, action.unit_cost % 1 ? 2 : 0)}` : ""}</button>
+    ${canAct ? `<div class="act-row"><button class="btn btn-primary rounded-pill px-3" data-act="${action.code}">${esc(action.label)}${action.unit_cost ? ` · $${fmt(action.unit_cost, action.unit_cost % 1 ? 2 : 0)}` : ""}</button>
       <span class="alt">${esc(action.alternative || "")}${shown.solvable_remotely === false ? " · <b>Not solvable remotely</b>" : ""}</span></div>` : ""}
     ${rules}
   </div>`;
@@ -165,9 +167,9 @@ function checkCard(c) {
 function moreActions(c) {
   const teams = state.meta.teams.filter(t => t !== c.owning_team);
   return `<div class="more">
-    <select class="input" id="reassign-team" aria-label="Reassign to team">${teams.map(t => `<option>${esc(t)}</option>`).join("")}</select>
-    <button class="btn secondary" id="reassign-go">Reassign, keep this case</button>
-    <button class="btn quiet" data-act="explain">Resolve with explanation</button>
+    <select class="form-select form-select-sm" id="reassign-team" aria-label="Reassign to team">${teams.map(t => `<option>${esc(t)}</option>`).join("")}</select>
+    <button class="btn btn-outline-primary btn-sm rounded-pill" id="reassign-go">Reassign, keep this case</button>
+    <button class="btn btn-light btn-sm border rounded-pill" data-act="explain">Resolve with explanation</button>
   </div>`;
 }
 
@@ -257,9 +259,9 @@ async function loadAccount(id) {
     <p class="eyebrow">Account${acc.display_name ? " · " + esc(acc.display_name) : ""}</p>
     <div class="acc-head"><span class="acc-id">${esc(acc.account_id)}</span></div>
     <div class="badges">
-      <span class="badge ${acc.meter_type}">${acc.meter_type === "smart" ? "Smart meter" : "Manual meter"}</span>
-      <span class="badge region">${esc(acc.region)}</span>
-      ${a.outage ? `<span class="badge outage">Outage · ${esc(a.outage.reference)}</span>` : ""}
+      <span class="badge rounded-pill ${acc.meter_type === "smart" ? "text-bg-dark" : "bg-white text-dark border border-dark"}">${acc.meter_type === "smart" ? "Smart meter" : "Manual meter"}</span>
+      <span class="badge rounded-pill text-bg-secondary">${esc(acc.region)}</span>
+      ${a.outage ? `<span class="badge rounded-pill text-bg-danger">Outage · ${esc(a.outage.reference)}</span>` : ""}
     </div>
     <div class="section" style="margin-top:10px">
       <p class="eyebrow" style="margin-bottom:0">Billed vs read (kWh), last 12 months</p>
@@ -267,8 +269,8 @@ async function loadAccount(id) {
         <span><i style="background:repeating-linear-gradient(45deg,var(--series-est) 0 3px,#b8481c 3px 5px)"></i>Billed on an estimate${est ? ` (${est})` : ""}</span>
         <span><i class="line" style="background:var(--ink)"></i>${acc.meter_type === "smart" ? "Smart" : "Meter"} read</span></div>
       <div id="bill-chart"></div>
-      <details class="table"><summary>Show as table</summary>
-        <table class="data"><thead><tr><th>Month</th><th>Billed kWh</th><th>Basis</th><th>Read kWh</th><th>Amount</th></tr></thead>
+      <details class="show-table"><summary>Show as table</summary>
+        <table class="table table-sm"><thead><tr><th>Month</th><th>Billed kWh</th><th>Basis</th><th>Read kWh</th><th>Amount</th></tr></thead>
         <tbody>${a.months.map(m => `<tr><td>${periodLabel(m.period)}</td><td>${fmt(m.effective_kwh)}</td>
           <td>${m.corrected ? "corrected" : m.read_type_used}</td><td>${m.read_kwh == null ? "no read" : fmt(m.read_kwh)}</td>
           <td>$${fmt(m.effective_amount, 2)}</td></tr>`).join("")}</tbody></table></details>

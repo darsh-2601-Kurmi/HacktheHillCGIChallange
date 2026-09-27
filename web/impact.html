@@ -4,26 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OneCase impact</title>
+<link rel="stylesheet" href="/static/creative/css/fonts.css">
+<link rel="stylesheet" href="/static/creative/css/styles.css">   <!-- Start Bootstrap Creative theme (MIT), unchanged -->
 <link rel="stylesheet" href="/static/app.css">
 <style>
-  @media (max-width: 1440px) { html { font-size: 16px; } }
   .wrap { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 14px; padding: 14px; align-items: start; }
   @media (max-width: 1000px) { .wrap { grid-template-columns: 1fr; } }
-  .col { padding: 16px 18px; }
   .presets { display: grid; gap: 6px; }
-  .presets button { text-align: left; border: 1.5px solid var(--rule); background: #fff; border-radius: var(--r); padding: 7px 10px;
-    cursor: pointer; font-size: .88rem; }
-  .presets button:hover { border-color: var(--action); }
-  .presets button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .presets .btn { text-align: left; font-size: .82rem; padding: 6px 12px; }
+  .presets .btn[aria-pressed="true"] { background: var(--action); border-color: var(--action); color: #fff; }
   .lever { margin-top: 14px; }
   .lever .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-  .lever label { font-size: .88rem; font-weight: 600; color: var(--ink-2); }
+  .lever label { font-family: var(--display); font-size: .82rem; font-weight: 700; color: var(--ink-2); }
   .lever output { font-family: var(--display); font-weight: 700; font-size: 1.2rem; }
   .lever small { display: block; font-size: .74rem; color: var(--muted); }
-  input[type=range] { width: 100%; accent-color: var(--action); height: 28px; }
   .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
   @media (max-width: 1200px) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (max-width: 700px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wrap { padding: 10px; gap: 10px; } }
+  @media (max-width: 700px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wrap { padding: 10px; gap: 10px; }
+    .tile .value { font-size: 1.55rem; } }
   .tile { padding: 12px 14px; }
   .tile .label { font-size: .8rem; color: var(--ink-2); }
   .tile .value { font-family: var(--display); font-weight: 700; font-size: 2rem; line-height: 1.1; margin-top: 2px; }
@@ -42,16 +40,28 @@
 </style>
 </head>
 <body>
-<header class="bar">
-  <div class="brand">NORTHWIND <b>OneCase</b><small>impact</small></div>
-  <nav aria-label="Pages">
-    <a href="/">Home</a><a href="/desk">Agent desk</a><a href="/impact" aria-current="page">Impact</a><a href="/customer">Check my bill</a>
-  </nav>
-  <div class="spacer"></div>
-  <span class="plate" title="Scenario engine: data pack + assumptions.yaml">Model · assumptions.yaml</span>
-</header>
+<nav class="navbar navbar-expand-lg navbar-light navbar-shrink app py-2" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="/">Northwind OneCase</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+      aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/desk">Agent desk</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/impact">Impact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/customer">Check my bill</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="toolbar">
+  <span class="tagline">What each fix buys</span>
+  <span class="spacer"></span>
+  <span class="badge rounded-pill text-bg-warning" title="Scenario engine: data pack + assumptions.yaml">Model · assumptions.yaml</span>
+</div>
 <main class="wrap">
-  <section class="panel col" aria-labelledby="lev-h">
+  <section class="panel pane" aria-labelledby="lev-h">
     <p class="eyebrow" id="lev-h">Scenarios</p>
     <div class="presets" id="presets"></div>
     <p class="eyebrow" style="margin-top:18px">Levers</p>
@@ -71,6 +81,7 @@
     <p class="foot" id="foot"></p>
   </section>
 </main>
+<script src="/static/creative/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="/static/impact.js"></script>
 </body>
 </html>

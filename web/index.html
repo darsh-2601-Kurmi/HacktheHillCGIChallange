@@ -4,32 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OneCase agent desk</title>
+<link rel="stylesheet" href="/static/creative/css/fonts.css">
+<link rel="stylesheet" href="/static/creative/css/styles.css">   <!-- Start Bootstrap Creative theme (MIT), unchanged -->
 <link rel="stylesheet" href="/static/app.css">
 <style>
   .desk { display: grid; grid-template-columns: 300px minmax(0, 1fr) 400px; gap: 14px; padding: 14px; align-items: start;
-    min-height: calc(100vh - 58px); }
-  @media (max-width: 1440px) { html { font-size: 16px; } }
+    min-height: calc(100vh - 120px); }
   @media (max-width: 1280px) { .desk { grid-template-columns: 270px minmax(0, 1fr) 350px; } }
   .desk.legacy { grid-template-columns: minmax(0, 1fr) 400px; }
   .desk.legacy #intake-panel { display: none; }
   @media (max-width: 1000px) { .desk, .desk.legacy { grid-template-columns: minmax(0, 1fr); } .desk { padding: 10px; gap: 10px; }
     .desk > * { min-width: 0; } }   /* the legacy hop row scrolls inside its panel instead of widening the page */
-  .col { padding: 16px 18px; }
 
   /* intake */
   .demo-tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-  .demo-tiles button { font-family: var(--display); font-weight: 700; font-size: 1.25rem; padding: 8px 0; border-radius: var(--r);
-    border: 1.5px solid var(--rule); background: #fff; cursor: pointer; }
-  .demo-tiles button:hover { border-color: var(--action); color: var(--action); }
-  .demo-tiles button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .demo-tiles .btn { font-family: var(--display); font-weight: 700; font-size: 1.15rem; padding: 6px 0; }
+  .demo-tiles .btn[aria-pressed="true"] { background: var(--action); border-color: var(--action); color: #fff; }
   .story { font-size: .8rem; color: var(--ink-2); min-height: 2.4em; margin: 6px 0 0; line-height: 1.3; }
-  #intake-panel label.f { margin-top: 9px; }
+  #intake .form-label { display: block; font-family: var(--display); font-size: .78rem; font-weight: 700; color: var(--ink-2);
+    margin: 10px 0 4px; }
+  #intake .form-control, #intake .form-select { font-size: .9rem; }
   .chips { display: flex; flex-wrap: wrap; gap: 5px; }
-  .chips label { cursor: pointer; }
-  .chips input { position: absolute; opacity: 0; pointer-events: none; }
-  .chips span { display: inline-block; padding: 5px 10px; border-radius: 99px; border: 1.5px solid var(--rule); font-size: .85rem; }
-  .chips input:checked + span { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .chips input:focus-visible + span { outline: 3px solid var(--action); outline-offset: 2px; }
+  .chips .btn { font-size: .78rem; padding: 3px 10px; }
   .note-channel { font-size: .72rem; color: var(--muted); margin: 4px 0 0; }
   .err { color: var(--flag); font-size: .85rem; margin-top: 8px; min-height: 1.2em; }
 
@@ -80,11 +76,11 @@
   .wire .s { font-size: .93rem; }
   .wire-cap { font-size: .78rem; color: var(--muted); margin: 2px 0 0 26px; }
   .more { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 10px; }
-  .more select { width: auto; padding: 6px 8px; font-size: .88rem; }
-  .more .btn { padding: 7px 12px; font-size: .88rem; }
+  .more .form-select { width: auto; font-size: .85rem; }
 
   /* legacy view */
   .legacy-title { display: flex; align-items: center; gap: 10px; }
+  .legacy-title h2 { font-size: 1.6rem; }
   .sim { font-family: var(--display); font-size: .72rem; font-weight: 700; letter-spacing: .1em; background: var(--flag); color: #fff;
     padding: 3px 8px; border-radius: 3px; }
   .hops { display: flex; align-items: stretch; margin: 14px 0 6px; overflow-x: auto; padding-bottom: 4px; }
@@ -163,11 +159,7 @@
   .acc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
   .acc-id { font-family: var(--mono); font-size: 1.2rem; font-weight: 700; }
   .badges { display: flex; gap: 6px; margin: 6px 0 4px; flex-wrap: wrap; }
-  .badge { font-family: var(--display); font-weight: 600; font-size: .8rem; padding: 3px 9px; border-radius: 4px; letter-spacing: .03em; }
-  .badge.smart { background: var(--ink); color: #fff; }
-  .badge.manual { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
-  .badge.region { background: var(--rule-2); }
-  .badge.outage { background: var(--flag); color: #fff; }
+  .badges .badge { font-family: var(--display); font-size: .75rem; }
   .past { list-style: none; padding: 0; margin: 6px 0 0; }
   .past li { padding: 8px 0; border-top: 1px solid var(--rule-2); font-size: .85rem; }
   .past .row1 { display: flex; justify-content: space-between; gap: 8px; }
@@ -179,55 +171,68 @@
 </style>
 </head>
 <body>
-<header class="bar">
-  <div class="brand">NORTHWIND <b>OneCase</b><small>one intake · one case · one screen</small></div>
-  <nav aria-label="Pages">
-    <a href="/">Home</a><a href="/desk" aria-current="page">Agent desk</a><a href="/impact">Impact</a><a href="/customer">Check my bill</a>
-  </nav>
-  <div class="spacer"></div>
-  <div class="seg" role="group" aria-label="View">
-    <button type="button" data-mode="onecase" aria-pressed="true">OneCase</button>
-    <button type="button" data-mode="legacy" aria-pressed="false" disabled title="Create a case first">Legacy path</button>
+<nav class="navbar navbar-expand-lg navbar-light navbar-shrink app py-2" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="/">Northwind OneCase</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+      aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/desk">Agent desk</a></li>
+        <li class="nav-item"><a class="nav-link" href="/impact">Impact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/customer">Check my bill</a></li>
+      </ul>
+    </div>
   </div>
-  <span class="plate" title="Account reads, bills and customers are generated. Complaint history and statistics are from the Northwind data pack.">Synthetic data</span>
-  <button type="button" class="btn-ghost" id="reset">Reset demo</button>
-</header>
+</nav>
+<div class="toolbar">
+  <span class="tagline">One intake · one case · one screen</span>
+  <span class="spacer"></span>
+  <div class="btn-group btn-group-sm seg" role="group" aria-label="View">
+    <button type="button" class="btn btn-outline-primary" data-mode="onecase" aria-pressed="true">OneCase</button>
+    <button type="button" class="btn btn-outline-primary" data-mode="legacy" aria-pressed="false" disabled title="Create a case first">Legacy path</button>
+  </div>
+  <span class="badge rounded-pill text-bg-warning" title="Account reads, bills and customers are generated. Complaint history and statistics are from the Northwind data pack.">Synthetic data</span>
+  <button type="button" class="btn btn-light btn-sm border rounded-pill" id="reset">Reset demo</button>
+</div>
 
 <main class="desk">
   <!-- ============ intake ============ -->
-  <section class="panel col" id="intake-panel" aria-labelledby="intake-h">
+  <section class="panel pane" id="intake-panel" aria-labelledby="intake-h">
     <p class="eyebrow" id="intake-h">New contact</p>
     <div class="demo-tiles" id="demo-tiles" role="group" aria-label="Demo customers"></div>
     <p class="story" id="story">Pick a demo customer to pre-fill the form.</p>
     <form id="intake" autocomplete="off">
-      <label class="f">Channel</label>
+      <span class="form-label">Channel</span>
       <div class="chips" id="channels" role="radiogroup" aria-label="Channel"></div>
       <p class="note-channel">Channel is just a field on the case, not a separate system.</p>
-      <label class="f" for="account">Account</label>
-      <input class="input mono" id="account" list="account-list" placeholder="ACC-715270" required>
+      <label class="form-label" for="account">Account</label>
+      <input class="form-control mono" id="account" list="account-list" placeholder="ACC-715270" required>
       <datalist id="account-list"></datalist>
-      <label class="f" for="category">Category</label>
-      <select class="input" id="category"></select>
-      <label class="f">Priority</label>
+      <label class="form-label" for="category">Category</label>
+      <select class="form-select" id="category"></select>
+      <span class="form-label">Priority</span>
       <div class="chips" id="priorities" role="radiogroup" aria-label="Priority"></div>
-      <label class="f" for="text">What the customer said</label>
-      <textarea class="input" id="text" rows="2"></textarea>
-      <div style="margin-top:12px"><button class="btn big" id="create" type="submit">Create case</button></div>
+      <label class="form-label" for="text">What the customer said</label>
+      <textarea class="form-control" id="text" rows="2"></textarea>
+      <div style="margin-top:14px"><button class="btn btn-primary btn-xl w-100" id="create" type="submit">Create case</button></div>
       <div class="err" id="intake-err" role="alert"></div>
     </form>
   </section>
 
   <!-- ============ case ============ -->
-  <section class="panel col" id="case" aria-live="polite">
+  <section class="panel pane" id="case" aria-live="polite">
     <div class="empty"><h2>No case open</h2>Pick a demo customer or type an account, then create the case.</div>
   </section>
 
   <!-- ============ account ============ -->
-  <section class="panel col" id="account-panel">
+  <section class="panel pane" id="account-panel">
     <p class="eyebrow">Account</p>
     <div class="empty" style="padding:24px 0">The account, its meter reads, bills and past complaints appear here.</div>
   </section>
 </main>
+<script src="/static/creative/js/bootstrap.bundle.min.js"></script>
 <script type="module" src="/static/desk.js"></script>
 </body>
 </html>

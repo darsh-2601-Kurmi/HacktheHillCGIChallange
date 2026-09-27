@@ -4,49 +4,62 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Check my bill</title>
+<link rel="stylesheet" href="/static/creative/css/fonts.css">
+<link rel="stylesheet" href="/static/creative/css/styles.css">   <!-- Start Bootstrap Creative theme (MIT), unchanged -->
 <link rel="stylesheet" href="/static/app.css">
 <style>
-  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 40px; }
-  .card { padding: 22px 24px; margin-top: 14px; }
-  h1 { font-size: 2rem; }
-  .lede { color: var(--ink-2); margin: 6px 0 0; }
-  .row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-  .row .input { flex: 1 1 220px; font-size: 1.1rem; }
-  .try { font-size: .85rem; color: var(--ink-2); margin-top: 10px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-  .try button { border: 1.5px solid var(--rule); background: #fff; border-radius: 99px; padding: 3px 11px; cursor: pointer; font-size: .85rem; }
-  .try button:hover { border-color: var(--action); color: var(--action); }
-  .result h2 { font-size: 1.5rem; margin: 8px 0 6px; }
-  .said { font-size: 1.1rem; line-height: 1.5; }
-  .breakdown { margin-top: 14px; padding: 12px 14px; background: var(--paper); border-radius: 8px; font-size: .95rem; }
-  .next { margin-top: 14px; padding: 12px 14px; border-radius: 8px; font-size: 1rem; }
+  .hero { padding: 3.5rem 0 5.5rem; }
+  .hero h1 { font-size: 2.5rem; }
+  main { max-width: 760px; margin: -3.5rem auto 0; padding: 0 16px 40px; position: relative; }
+  .card-pad { padding: 24px 26px; margin-top: 16px; }
+  #f .form-control { flex: 1 1 240px; }
+  .try { font-size: .85rem; color: var(--ink-2); margin-top: 12px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .result h2 { font-size: 1.5rem; margin: 10px 0 6px; }
+  .said { font-size: 1.05rem; line-height: 1.6; }
+  .breakdown { margin-top: 14px; padding: 12px 14px; background: var(--paper); border-radius: 8px; font-size: .92rem; }
+  .next { margin-top: 14px; padding: 12px 14px; border-radius: 8px; font-size: .98rem; }
   .next.case { background: var(--info-wash); }
   .next.ok { background: var(--pass-wash); }
   .limits { font-size: .88rem; color: var(--ink-2); }
-  .limits ul { margin: 6px 0 0; padding-left: 20px; }
+  .limits b { font-family: var(--display); color: var(--ink); }
+  .limits ul { margin: 8px 0 0; padding-left: 20px; }
   .err { color: var(--flag); margin-top: 10px; min-height: 1.2em; }
-  @media (max-width: 600px) { main { padding: 14px 12px 30px; } .card { padding: 16px; } h1 { font-size: 1.6rem; } }
+  @media (max-width: 600px) { .hero { padding: 2.5rem 0 4.5rem; } .hero h1 { font-size: 2rem; } .card-pad { padding: 18px; } }
 </style>
 </head>
 <body>
-<header class="bar">
-  <div class="brand">NORTHWIND <b>OneCase</b><small>check my bill</small></div>
-  <nav aria-label="Pages">
-    <a href="/">Home</a><a href="/desk">Agent desk</a><a href="/impact">Impact</a><a href="/customer" aria-current="page">Check my bill</a>
-  </nav>
-  <div class="spacer"></div>
-  <span class="plate">Synthetic data</span>
+<nav class="navbar navbar-expand-lg navbar-light navbar-shrink app py-2" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="/">Northwind OneCase</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+      aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/desk">Agent desk</a></li>
+        <li class="nav-item"><a class="nav-link" href="/impact">Impact</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/customer">Check my bill</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<header class="hero bg-primary text-center">
+  <div class="container px-4">
+    <h1 class="text-white">Check my bill</h1>
+    <hr class="divider divider-light" />
+    <p class="text-white-75 mb-3">We compare what we charged with your meter readings and tell you what we find, in plain words.</p>
+    <span class="badge rounded-pill text-bg-warning">Synthetic data</span>
+  </div>
 </header>
 <main>
-  <section class="panel card">
-    <h1>Check my bill</h1>
-    <p class="lede">We compare what we charged with your meter readings and tell you what we find, in plain words.</p>
-    <form class="row" id="f"><input class="input mono" id="acc" placeholder="Account number, e.g. ACC-715270" required aria-label="Account number">
-      <button class="btn" type="submit" id="go">Check my bill</button></form>
-    <div class="try">Try a demo account: <span id="demos"></span></div>
+  <section class="panel card-pad">
+    <form class="d-flex flex-wrap gap-2" id="f"><input class="form-control form-control-lg mono" id="acc" placeholder="Account number, e.g. ACC-715270" required aria-label="Account number">
+      <button class="btn btn-primary btn-xl" type="submit" id="go">Check my bill</button></form>
+    <div class="try">Try a demo account: <span id="demos" class="d-flex flex-wrap gap-1"></span></div>
     <div class="err" id="err" role="alert"></div>
   </section>
-  <section class="panel card result" id="result" hidden aria-live="polite"></section>
-  <section class="panel card limits">
+  <section class="panel card-pad result" id="result" hidden aria-live="polite"></section>
+  <section class="panel card-pad limits">
     <b>What this page can and can't do</b>
     <ul>
       <li>It runs the same rules our agents use. It is not a chatbot and does not guess.</li>
@@ -56,11 +69,12 @@
     </ul>
   </section>
 </main>
+<script src="/static/creative/js/bootstrap.bundle.min.js"></script>
 <script type="module">
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const meta = await (await fetch("/meta")).json();
-$("#demos").innerHTML = meta.demo.map(d => `<button type="button" data-id="${d.account_id}">${d.label}</button>`).join(" ");
+$("#demos").innerHTML = meta.demo.map(d => `<button type="button" class="btn btn-outline-primary btn-sm rounded-pill" data-id="${d.account_id}">Demo ${d.label}</button>`).join(" ");
 $("#demos").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { $("#acc").value = b.dataset.id; check(); } });
 $("#f").addEventListener("submit", e => { e.preventDefault(); check(); });
 

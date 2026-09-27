@@ -50,7 +50,7 @@ On a Mac or Linux laptop with `make`: `make data`, `make run`, `make test`, `mak
 
 | URL | Purpose |
 |---|---|
-| `/` (also `/home`) | Landing page: headline numbers, water and electricity tiles |
+| `/` (also `/home`) | Landing page: headline numbers, what OneCase does, where complaints go wrong |
 | `/desk` | Agent desk: the live demo. Demo customers A to E, before/after toggle, Reset |
 | `/impact` | Scenario page with live levers. Same engine and assumptions as the exports and the report |
 | `/customer` | "Check my bill": rules-based self-service that creates or joins the same OneCase case |
@@ -84,6 +84,15 @@ on Vercel). Every visitor gets their own demo, starting clean; **Reset demo** cl
 
 To redeploy from this folder: `python run.py data` (the database is not in git), then `npx vercel deploy --prod`.
 
+## Design
+
+Every page uses the [Start Bootstrap Creative](https://github.com/StartBootstrap/startbootstrap-creative) theme
+(MIT, Bootstrap 5.2.3), unchanged: its CSS, the Merriweather fonts, the white navbar and the orange buttons. The files
+the theme normally loads from CDNs (Bootstrap's JS, Bootstrap Icons, SimpleLightbox, the fonts) are kept in
+`web/static/creative/`, so the site still works offline. `web/static/app.css` adds only the app's own pieces (case
+timeline, bill check card, status pills, charts) in the theme's colours. The photos are from Wikimedia Commons
+(CC BY, CC BY-SA, CC0 and public domain), credited in the home page footer and in `web/static/creative/README.txt`.
+
 ## Animation and 3D (optional, offline)
 
 - **Legacy toggle on the agent desk.** A 3D stage is built from the real `GET /legacy-path/{id}` response, so it
@@ -93,10 +102,10 @@ To redeploy from this folder: `python run.py data` (the database is not in git),
   flag lights up when it passes this case's SLA. The *OneCase* lane then fires one straight beam carrying the case ID:
   "resolved at first contact", or "routed once" if the case is still open. **Replay** reruns it.
   The comparison table stays below.
-- **Landing page (`/`).** Two simple animated tiles for the two services: a tap filling a glass (water) and a light
-  bulb switching on (electricity), each with its complaint count (water-network vs electricity and billing) from
-  `web/static/data/regions.json`, rebuilt by `python run.py data`. Plain SVG and CSS, no 3D; the bulb ramps on softly
-  (no flashing), and with `prefers-reduced-motion` the page shows a still frame (full glass, lit bulb).
+- **Landing page (`/`).** The banner cross-fades every 10 seconds through five photos of power lines at sunset; each
+  photo loads while the one before it is showing, and with `prefers-reduced-motion` the banner stays on the first.
+  The About figures and the complaint counts on the water and electricity photos come from
+  `web/static/data/regions.json`, rebuilt by `python run.py data`.
 - **Libraries.** three.js 0.186.1 (MIT) is vendored in `web/static/vendor/`, from the npm registry tarball with its
   sha512 verified. No GSAP, no CDN, no build step. The desk loads three.js lazily and never imports it up front.
 - **Fallbacks.** With no WebGL, on a phone or a screen under 900px, if three.js fails to load, or if the WebGL context
@@ -124,13 +133,14 @@ src/legacy.py          simulated "before" path for the toggle
 src/valuecase.py       one-page value case generator
 src/facts.py           every headline number, computed from the exports (Power BI titles, tests)
 src/api.py             FastAPI app, also serves web/
-src/web_exports.py     web/static/data/regions.json for the landing map
+src/web_exports.py     web/static/data/regions.json for the landing page numbers
 src/pbip.py            powerbi/, the Power BI project (model + nine-page report)
 src/demo_state.py      hosted demo: carries each visitor's cases with the browser (Vercel only)
 api/index.py           Vercel entry point; vercel.json and .vercelignore configure the deploy
 powerbi/               Northwind.pbip (generated)
 web/                   home.html (landing), index.html (agent desk), impact.html, customer.html
-web/static/            desk.js, legacy3d.js (3D stage), home.js (3D map), gfx.js (3D checks + helpers), vendor/three
+web/static/            desk.js, legacy3d.js (3D stage), home.js (landing numbers), gfx.js (3D checks + helpers), app.css,
+                       creative/ (the theme, its fonts and scripts, photos), vendor/three
 tests/                 pytest; runs on a copy of the database
 docs/                  demo_script.md, value_case.md (generated), powerbi_guide.md (build it by hand)
 ```

@@ -1,198 +1,258 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Northwind OneCase</title>
-<style>
-  /* Two faces only: Bahnschrift (DIN 1451, the meter-plate face) for display and figures, Segoe UI for reading.
-     One amber (electricity, action) and one aqua (water) on navy. Local fonts, nothing from the network. */
-  :root {
-    color-scheme: dark;
-    --navy: #0a1424; --navy-1: #102038; --line: #223a5c;
-    --ink: #eef3f8; --ink-2: #a3b5c9; --ink-3: #7389a1;
-    --amber: #ffb23f; --amber-mark: #c98500; --aqua: #5fe6dc; --aqua-mark: #159f9f;
-    --display: "Bahnschrift", "DIN Alternate", "DIN 2014", "Barlow", "Arial Narrow", system-ui, sans-serif;
-    --body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html { font-size: 17px; }
-  @media (max-width: 1440px) { html { font-size: 16px; } }
-  body { margin: 0; min-height: 100vh; background: var(--navy); color: var(--ink); font-family: var(--body); line-height: 1.45;
-    background-image: radial-gradient(60% 70% at 72% 55%, #13284a 0%, rgba(10,20,36,0) 70%); }
-  a { color: inherit; }
-  :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
-
-  .top { display: flex; align-items: center; gap: 28px; padding: 14px 56px; }
-  .brand { font-family: var(--display); font-weight: 600; font-size: 1.25rem; letter-spacing: .02em; text-decoration: none; }
-  .brand b { color: var(--amber); font-weight: 700; }
-  .top nav { display: flex; gap: 4px; margin-left: auto; }
-  .top nav a { text-decoration: none; color: var(--ink-2); padding: 7px 12px; border-radius: 6px; font-size: .95rem; }
-  .top nav a:hover, .top nav a[aria-current="page"] { color: var(--ink); background: rgba(255,255,255,.06); }
-
-  .hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: 24px;
-    padding: 0 56px; min-height: calc(100vh - 66px - 40px); }
-  .eyebrow { font-family: var(--display); font-size: .82rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--ink-3); margin: 0 0 18px; }
-  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(2.8rem, min(5.4vw, 9.6vh), 5.4rem); line-height: .98; letter-spacing: -.012em;
-    margin: 0; }
-  h1 span { display: block; }
-  .lede { font-size: 1.15rem; color: var(--ink-2); max-width: 36ch; margin: 22px 0 24px; }
-  .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-  .cta { font-family: var(--display); font-weight: 600; font-size: 1.08rem; letter-spacing: .01em; text-decoration: none;
-    padding: 13px 22px; border-radius: 8px; }
-  .cta.primary { background: var(--amber); color: var(--navy); }
-  .cta.primary:hover { filter: brightness(1.08); }
-  .cta.ghost { box-shadow: inset 0 0 0 1.5px rgba(238,243,248,.35); }
-  .cta.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
-  .facts { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 34px; margin-top: 30px; padding-top: 18px;
-    border-top: 1px solid var(--line); }
-  .fact b { display: block; font-family: var(--display); font-weight: 600; font-size: 2.1rem; line-height: 1; white-space: nowrap; }
-  .fact span { display: block; font-size: .85rem; color: var(--ink-2); margin-top: 6px; max-width: 19ch; }
-
-  /* the two services: a tap filling a glass (8 s cycle), a bulb fading up and down (2.6 s). Plain SVG + CSS */
-  .art { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-self: center; }
-  .tile { background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)); border: 1px solid var(--line);
-    border-radius: 18px; padding: 22px 22px 20px; display: flex; flex-direction: column; }
-  .tile .tag { font-family: var(--display); font-weight: 600; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; }
-  .tile.water .tag { color: var(--aqua); } .tile.power .tag { color: var(--amber); }
-  .tile svg { display: block; width: 100%; height: auto; max-height: 46vh; margin: 8px 0 10px; overflow: visible; }
-  .tile .n { font-family: var(--display); font-weight: 600; font-size: 2.3rem; line-height: 1; font-variant-numeric: tabular-nums; }
-  .tile .what { color: var(--ink-2); font-size: .92rem; margin-top: 6px; }
-  .art .note { grid-column: 1 / -1; margin: 2px 4px 0; color: var(--ink-3); font-size: .85rem; }
-
-  /* water: the stream runs, the glass fills, then empties and starts again */
-  .stream { stroke-dasharray: 10 8; animation: flow .5s linear infinite, pour 8s ease-in-out infinite; }
-  .fill { transform-box: fill-box; transform-origin: 50% 100%; animation: fill 8s ease-in-out infinite; }
-  .bubble { animation: rise 2.4s ease-in infinite; opacity: 0; }
-  .bubble.b2 { animation-delay: .8s; } .bubble.b3 { animation-delay: 1.6s; }
-  .drop { animation: drip 8s ease-in infinite; opacity: 0; }
-  @keyframes flow { to { stroke-dashoffset: -18; } }
-  @keyframes pour { 0%, 4% { opacity: 0; } 8%, 62% { opacity: 1; } 68%, 100% { opacity: 0; } }
-  @keyframes fill { 0%, 6% { transform: scaleY(.04); } 64%, 88% { transform: scaleY(1); } 97%, 100% { transform: scaleY(.04); } }
-  @keyframes rise { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .8; } 100% { transform: translateY(-70px); opacity: 0; } }
-  @keyframes drip { 0%, 68% { transform: translateY(0); opacity: 0; } 70% { opacity: 1; } 78% { transform: translateY(58px); opacity: 0; } 100% { opacity: 0; } }
-
-  /* electricity: the bulb fades up and down on its own gentle 2.6 s rhythm (a smooth fade, never a flash) */
-  .glow { animation: glow 2.6s ease-in-out infinite; }
-  .lit { animation: lit 2.6s ease-in-out infinite; }
-  .rays { animation: rays 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
-  .filament { animation: filament 2.6s ease-in-out infinite; }
-  @keyframes glow { 0%, 100% { opacity: .08; } 45%, 60% { opacity: .9; } }
-  @keyframes lit { 0%, 100% { fill-opacity: .12; } 45%, 60% { fill-opacity: .92; } }
-  @keyframes rays { 0%, 100% { opacity: 0; transform: scale(.88); } 45%, 60% { opacity: 1; transform: scale(1); } }
-  @keyframes filament { 0%, 100% { stroke: #6b5a3a; } 45%, 60% { stroke: #fff4d6; } }
-
-  @media (prefers-reduced-motion: reduce) {             /* still frame: full glass, bulb on */
-    .stream, .fill, .bubble, .drop, .glow, .lit, .rays, .filament { animation: none; }
-    .fill { transform: none; } .bubble, .drop { opacity: 0; } .glow { opacity: .75; } .lit { fill-opacity: .9; }
-    .rays { opacity: .9; } .filament { stroke: #fff4d6; }
-  }
-
-  .foot { padding: 6px 56px 12px; margin: 0; font-size: .78rem; color: var(--ink-3); }
-  .foot b { color: var(--ink-2); font-weight: 600; }
-
-  @media (max-width: 900px) {
-    .top { padding: 14px 16px; flex-wrap: wrap; gap: 10px; }
-    .top nav { margin-left: 0; flex-wrap: wrap; }
-    .hero { grid-template-columns: 1fr; padding: 8px 16px 0; min-height: 0; }
-    .facts { grid-template-columns: 1fr 1fr; gap: 20px; }
-    .art { gap: 12px; margin: 26px 0 10px; }
-    .tile { padding: 14px; border-radius: 14px; }
-    .tile .n { font-size: 1.7rem; }
-    .foot { padding: 12px 16px; }
-  }
-</style>
-</head>
-<body>
-<header class="top">
-  <a class="brand" href="/">NORTHWIND <b>OneCase</b></a>
-  <nav aria-label="Pages">
-    <a href="/" aria-current="page">Home</a><a href="/desk">Agent desk</a><a href="/impact">Impact</a><a href="/customer">Check my bill</a>
-  </nav>
-</header>
-<main class="hero">
-  <section>
-    <p class="eyebrow">Northwind Utilities · complaint handling</p>
-    <h1><span>One complaint.</span><span>One case.</span><span>One screen.</span></h1>
-    <p class="lede" id="lede">Every complaint, from any channel, opens one case that keeps its history from first contact to close.</p>
-    <div class="ctas">
-      <a class="cta primary" href="/desk">Open the agent desk</a>
-      <a class="cta ghost" href="/impact">See the impact</a>
-    </div>
-    <div class="facts" id="facts" aria-live="polite"></div>
-  </section>
-  <section class="art" aria-label="What Northwind supplies">
-    <figure class="tile water" style="margin:0">
-      <span class="tag">Water</span>
-      <svg viewBox="0 0 220 260" role="img" aria-label="A tap filling a glass of water">
-        <defs>
-          <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#dbe5ef"/><stop offset=".55" stop-color="#8a9db3"/><stop offset="1" stop-color="#5d7089"/>
-          </linearGradient>
-          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#8ff3ea" stop-opacity=".95"/><stop offset="1" stop-color="#159f9f" stop-opacity=".9"/>
-          </linearGradient>
-          <clipPath id="glassClip"><path d="M127 130 L211 130 L201.5 243 L136.5 243 Z"/></clipPath>
-        </defs>
-        <rect x="6" y="26" width="14" height="44" rx="3" fill="#1a3050" stroke="#36557f"/>
-        <rect x="18" y="38" width="86" height="20" rx="4" fill="url(#metal)"/>
-        <rect x="110" y="14" width="12" height="16" rx="3" fill="url(#metal)"/>
-        <rect x="94" y="7" width="44" height="9" rx="4.5" fill="url(#metal)"/>
-        <rect x="96" y="28" width="40" height="40" rx="8" fill="url(#metal)"/>
-        <path d="M130 40 H160 Q176 40 176 56 V70 H162 V58 Q162 54 158 54 H130 Z" fill="url(#metal)"/>
-        <line class="stream" x1="169" y1="72" x2="169" y2="238" stroke="#5fe6dc" stroke-width="6" stroke-linecap="round"/>
-        <circle class="drop" cx="169" cy="76" r="3.5" fill="#5fe6dc"/>
-        <ellipse cx="169" cy="250" rx="46" ry="5" fill="rgba(0,0,0,.35)"/>
-        <g clip-path="url(#glassClip)">
-          <rect class="fill" x="120" y="140" width="100" height="104" fill="url(#water)"/>
-          <circle class="bubble" cx="152" cy="236" r="2.6" fill="#e9fffd"/>
-          <circle class="bubble b2" cx="172" cy="240" r="2.2" fill="#e9fffd"/>
-          <circle class="bubble b3" cx="189" cy="234" r="2.6" fill="#e9fffd"/>
-        </g>
-        <path d="M124 128 L214 128 L204 246 L134 246 Z" fill="rgba(255,255,255,.05)" stroke="rgba(220,240,255,.6)"
-              stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M133 138 L141 234" stroke="rgba(255,255,255,.28)" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-      <b class="n" id="n-water">–</b>
-      <span class="what">water-network complaints</span>
-    </figure>
-    <figure class="tile power" style="margin:0">
-      <span class="tag">Electricity</span>
-      <svg viewBox="0 0 220 260" role="img" aria-label="A light bulb switching on">
-        <defs>
-          <radialGradient id="halo"><stop offset="0" stop-color="#ffcf6b" stop-opacity=".75"/>
-            <stop offset=".45" stop-color="#ffb23f" stop-opacity=".25"/><stop offset="1" stop-color="#ffb23f" stop-opacity="0"/></radialGradient>
-          <linearGradient id="screw" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#6f839b"/><stop offset=".45" stop-color="#d3dde8"/><stop offset="1" stop-color="#5d7089"/>
-          </linearGradient>
-        </defs>
-        <circle class="glow" cx="110" cy="100" r="104" fill="url(#halo)"/>
-        <g class="rays" stroke="#ffb23f" stroke-width="5" stroke-linecap="round">
-          <line x1="38" y1="100" x2="20" y2="100"/><line x1="59.1" y1="49.1" x2="46.4" y2="36.4"/>
-          <line x1="110" y1="28" x2="110" y2="10"/><line x1="160.9" y1="49.1" x2="173.6" y2="36.4"/>
-          <line x1="182" y1="100" x2="200" y2="100"/>
-        </g>
-        <path class="lit" d="M92 168 C92 150 62 136 62 100 A48 48 0 1 1 158 100 C158 136 128 150 128 168 Z"
-              fill="#ffd27a" stroke="rgba(255,236,190,.75)" stroke-width="2.5"/>
-        <path class="filament" d="M100 166 L103 120 M120 166 L117 120 M103 120 L105.5 113 L108 120 L110.5 113 L113 120 L115.5 113 L117 120"
-              fill="none" stroke="#fff4d6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M78 84 Q84 66 100 59" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="4" stroke-linecap="round"/>
-        <rect x="90" y="168" width="40" height="10" rx="3" fill="url(#screw)"/>
-        <rect x="92" y="180" width="36" height="8" rx="3" fill="url(#screw)"/>
-        <rect x="92" y="190" width="36" height="8" rx="3" fill="url(#screw)"/>
-        <rect x="95" y="200" width="30" height="8" rx="3" fill="url(#screw)"/>
-        <path d="M102 210 H118 L115 218 H105 Z" fill="#3a4a5e"/>
-        <ellipse cx="110" cy="250" rx="40" ry="5" fill="rgba(0,0,0,.35)"/>
-      </svg>
-      <b class="n" id="n-power">–</b>
-      <span class="what">electricity and billing complaints</span>
-    </figure>
-    <p class="note" id="art-note">Every one of them should be one case, from first contact to close.</p>
-  </section>
-</main>
-<p class="foot"><b>Data:</b> complaint history and statistics from the Northwind data pack. Account reads and bills in the
-  prototype are synthetic.</p>
-<script type="module" src="/static/home.js"></script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Northwind OneCase: one complaint, one case, one screen." />
+        <title>Northwind OneCase</title>
+        <!-- Layout and CSS: Start Bootstrap Creative (MIT), unchanged. Its CDN files are kept locally: see static/creative/README.txt -->
+        <link href="/static/creative/css/bootstrap-icons.min.css" rel="stylesheet" />
+        <link href="/static/creative/css/fonts.css" rel="stylesheet" />
+        <link href="/static/creative/css/simpleLightbox.min.css" rel="stylesheet" />
+        <link href="/static/creative/css/styles.css" rel="stylesheet" />
+        <style>
+            /* Masthead slideshow: the theme's photo and tint, cross-fading to the next photo every 10 seconds */
+            header.masthead { position: relative; overflow: hidden; }
+            header.masthead > .container { position: relative; z-index: 1; }
+            .slides { position: absolute; inset: 0; }
+            .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0;
+                transition: opacity 1.8s ease-in-out; }
+            .slide.on { opacity: 1; }
+            @media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Northwind OneCase</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">What it does</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Where it goes wrong</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Try it</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/desk">Agent desk</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="slides" aria-hidden="true">
+                <div class="slide on" data-src="/static/creative/assets/img/bg-masthead.jpg"></div>
+                <div class="slide" data-src="/static/creative/assets/img/masthead/2.jpg"></div>
+                <div class="slide" data-src="/static/creative/assets/img/masthead/3.jpg"></div>
+                <div class="slide" data-src="/static/creative/assets/img/masthead/4.jpg"></div>
+                <div class="slide" data-src="/static/creative/assets/img/masthead/5.jpg"></div>
+            </div>
+            <div class="container px-4 px-lg-5 h-100">
+                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    <div class="col-lg-8 align-self-end">
+                        <h1 class="text-white font-weight-bold">One complaint. One case. One screen.</h1>
+                        <hr class="divider" />
+                    </div>
+                    <div class="col-lg-8 align-self-baseline">
+                        <p class="text-white-75 mb-5">Northwind supplies water and electricity. OneCase gives every complaint, from any channel, one case that keeps its history from first contact to close.</p>
+                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+                        <a class="btn btn-light btn-xl ms-sm-2 mt-3 mt-sm-0" href="/desk">Open the agent desk</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="text-white mt-0">History gets lost at every handover</h2>
+                        <hr class="divider divider-light" />
+                        <p class="text-white-75 mb-4" id="lede">Complaints are passed from one system to another, and every handover loses the history. OneCase opens one case from any channel and keeps it to the end.</p>
+                        <div class="row text-white mb-5" id="facts" aria-live="polite"></div>
+                        <a class="btn btn-light btn-xl" href="#services">See what it does</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">What OneCase does</h2>
+                <hr class="divider" />
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-inbox fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">One intake</h3>
+                            <p class="text-muted mb-0">Phone, web form, email or the customer page: every contact opens the same kind of case.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-folder2-open fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">Full history</h3>
+                            <p class="text-muted mb-0">Every step stays on the case, so the customer never has to explain twice.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-receipt fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">Bill check</h3>
+                            <p class="text-muted mb-0">Compares each bill with the meter reads and corrects estimates when a smart read exists.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-5">
+                            <div class="mb-2"><i class="bi-signpost-split fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">Right team first</h3>
+                            <p class="text-muted mb-0">Plain routing rules send the case to the team that can close it.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Portfolio-->
+        <div id="portfolio">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="/static/creative/assets/img/portfolio/fullsize/1.jpg" title="Water: every water-network complaint should be one case.">
+                            <img class="img-fluid" src="/static/creative/assets/img/portfolio/thumbnails/1.jpg" alt="Filling a glass at a kitchen tap" />
+                            <div class="portfolio-box-caption">
+                                <div class="project-category text-white-50">Water</div>
+                                <div class="project-name"><span id="n-water"></span> water-network complaints</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="/static/creative/assets/img/portfolio/fullsize/2.jpg" title="Electricity: supply and billing complaints, each one a single case.">
+                            <img class="img-fluid" src="/static/creative/assets/img/portfolio/thumbnails/2.jpg" alt="A glowing light bulb" />
+                            <div class="portfolio-box-caption">
+                                <div class="project-category text-white-50">Electricity</div>
+                                <div class="project-name"><span id="n-power"></span> electricity and billing complaints</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="/static/creative/assets/img/portfolio/fullsize/3.jpg" title="Smart meters: they spread across four regions, yet the share of estimated bills did not fall.">
+                            <img class="img-fluid" src="/static/creative/assets/img/portfolio/thumbnails/3.jpg" alt="A smart electricity meter" />
+                            <div class="portfolio-box-caption">
+                                <div class="project-category text-white-50">Smart meters</div>
+                                <div class="project-name">Estimated bills, despite the smart reads</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="/static/creative/assets/img/portfolio/fullsize/4.jpg" title="Meter reads: the bill check compares what was billed with what the meter read.">
+                            <img class="img-fluid" src="/static/creative/assets/img/portfolio/thumbnails/4.jpg" alt="Two water meters on a red brick wall" />
+                            <div class="portfolio-box-caption">
+                                <div class="project-category text-white-50">Meter reads</div>
+                                <div class="project-name">Every bill checked against the meter</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="/static/creative/assets/img/portfolio/fullsize/5.jpg" title="Outages: while the supply is off, payment reminders are held on the same case.">
+                            <img class="img-fluid" src="/static/creative/assets/img/portfolio/thumbnails/5.jpg" alt="A line worker repairing a power line" />
+                            <div class="portfolio-box-caption">
+                                <div class="project-category text-white-50">Outages</div>
+                                <div class="project-name">No payment reminders while the power is off</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <a class="portfolio-box" href="/static/creative/assets/img/portfolio/fullsize/6.jpg" title="Contact centre: whoever picks up sees the whole case.">
+                            <img class="img-fluid" src="/static/creative/assets/img/portfolio/thumbnails/6.jpg" alt="A contact centre with agents at their desks" />
+                            <div class="portfolio-box-caption p-3">
+                                <div class="project-category text-white-50">Contact centre</div>
+                                <div class="project-name">Whoever picks up sees the whole case</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Call to action-->
+        <section class="page-section bg-dark text-white">
+            <div class="container px-4 px-lg-5 text-center">
+                <h2 class="mb-4">See one case from first contact to close</h2>
+                <a class="btn btn-light btn-xl" href="/desk">Open the agent desk</a>
+            </div>
+        </section>
+        <!-- Try it (the theme's contact section)-->
+        <section class="page-section" id="contact">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6 text-center">
+                        <h2 class="mt-0">Try it yourself</h2>
+                        <hr class="divider" />
+                        <p class="text-muted mb-5">Every account in the prototype is synthetic, so click anything. Reset puts the demo back to the start.</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                        <i class="bi-headset fs-2 mb-3 text-muted"></i>
+                        <div><a href="/desk">Agent desk</a></div>
+                        <div class="small text-muted">Open a case, fix a bill, see the old path</div>
+                    </div>
+                    <div class="col-lg-4 text-center mb-5 mb-lg-0">
+                        <i class="bi-graph-up fs-2 mb-3 text-muted"></i>
+                        <div><a href="/impact">Impact</a></div>
+                        <div class="small text-muted">What each fix does to the regulator score</div>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <i class="bi-receipt-cutoff fs-2 mb-3 text-muted"></i>
+                        <div><a href="/customer">Check my bill</a></div>
+                        <div class="small text-muted">The same rules, for customers</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5">
+                <div class="small text-center text-muted">Northwind OneCase · Hack the Hill III, CGI challenge. Complaint history and statistics come from the Northwind data pack; account reads and bills in the prototype are synthetic.</div>
+                <div class="small text-center text-muted mt-2">Theme: <a href="https://github.com/StartBootstrap/startbootstrap-creative">Start Bootstrap Creative</a> (MIT).
+                    Photos from Wikimedia Commons: Novoklimov (<a href="https://commons.wikimedia.org/wiki/File:Electricity_pylons,_sunset_02.jpg">1</a>,
+                    <a href="https://commons.wikimedia.org/wiki/File:Electricity_pylons,_sunset_03.jpg">2</a>; CC BY 4.0),
+                    <a href="https://commons.wikimedia.org/wiki/File:Electricity_pylons_at_sunset_Mississauga_CA_2010.jpg">Ian Muttoo</a> (CC BY-SA 2.0),
+                    <a href="https://commons.wikimedia.org/wiki/File:Pylons_in_the_sunset_-_geograph.org.uk_-_2463623.jpg">Chris Holifield</a> (CC BY-SA 2.0),
+                    <a href="https://commons.wikimedia.org/wiki/File:Electricity_pylons_at_sunset_in_Quebec_City.jpg">Wilfredor</a> (CC0),
+                    <a href="https://commons.wikimedia.org/wiki/File:Filling_a_glass_with_water_in_a_kitchen_sink_closeup.jpg">Shixart1985</a> (CC BY 2.0),
+                    <a href="https://commons.wikimedia.org/wiki/File:H%C3%B5%C3%B5glamp.jpg">Janek Lass</a> (CC BY-SA 3.0),
+                    <a href="https://commons.wikimedia.org/wiki/File:Aclara_I-210%2B_single_phase_smart_electricity_meter.jpg">277volts</a> (CC BY-SA 4.0),
+                    <a href="https://commons.wikimedia.org/wiki/File:Two_blue_water_meters_on_a_matte_red_painted_brick_facade_with_pipes_in_Seoul.jpg">Basile Morin</a> (CC BY-SA 4.0),
+                    <a href="https://commons.wikimedia.org/wiki/File:FEMA_-_20472_-_Photograph_by_Marvin_Nauman_taken_on_11-10-2005_in_Louisiana.jpg">Marvin Nauman / FEMA</a> and
+                    <a href="https://commons.wikimedia.org/wiki/File:Coralville,_IA_Consumer_Response_Call_Center_(8620101136).jpg">CFPB</a> (public domain). Resized and cropped.</div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="/static/creative/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <script src="/static/creative/js/simpleLightbox.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/static/creative/js/scripts.js"></script>
+        <!-- Masthead slideshow: next photo every 10 s; each photo loads just before its turn. Still for reduced motion.-->
+        <script>
+            (() => {
+                const slides = [...document.querySelectorAll(".slide")];
+                const tint = "linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%)";   // the theme's own
+                const show = el => { el.style.backgroundImage = `${tint}, url("${el.dataset.src}")`; };
+                const preload = el => new Promise(ok => { const im = new Image(); im.onload = im.onerror = ok; im.src = el.dataset.src; });
+                show(slides[0]);
+                if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                let i = 0, ready = preload(slides[1]);          // the next photo loads while this one is showing
+                setInterval(async () => {
+                    if (document.hidden) return;
+                    const n = (i + 1) % slides.length;
+                    await ready; show(slides[n]);
+                    slides[i].classList.remove("on"); slides[n].classList.add("on");
+                    i = n; ready = preload(slides[(i + 1) % slides.length]);
+                }, 10000);
+            })();
+        </script>
+        <!-- Numbers from the data-->
+        <script type="module" src="/static/home.js"></script>
+    </body>
 </html>
