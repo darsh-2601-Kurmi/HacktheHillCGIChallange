@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Northwind OneCase</title>
+  <!-- Water drop with a lightning bolt: the two services, one mark. Theme orange (#f4623a). -->
+  <rect width="64" height="64" rx="14" fill="#f4623a"/>
+  <path d="M32 7C32 7 13 30 13 42.5A19 19 0 0 0 51 42.5C51 30 32 7 32 7Z" fill="#fff"/>
+  <path d="M35.5 22L24 43H31.5L28.5 57L41.5 34.5H34L38.5 22Z" fill="#f4623a"/>
+</svg>

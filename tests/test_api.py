@@ -69,7 +69,7 @@ def test_scenarios(client):
 
 
 def test_pages_served(client):
-    for p in ["/", "/home", "/desk", "/impact", "/customer", "/static/data/regions.json",
+    for p in ["/", "/home", "/desk", "/impact", "/customer", "/favicon.ico", "/static/data/regions.json",
               "/static/vendor/three.module.js", "/static/vendor/three.core.js"]:
         assert client.get(p).status_code == 200
     assert client.get("/").text == client.get("/home").text          # the site opens on the landing page

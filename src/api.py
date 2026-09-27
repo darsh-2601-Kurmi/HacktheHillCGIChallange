@@ -296,4 +296,9 @@ def page_customer():
     return FileResponse(WEB / "customer.html")
 
 
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    return FileResponse(WEB / "static" / "favicon.ico")
+
+
 app.mount("/static", StaticFiles(directory=WEB / "static"), name="static")
