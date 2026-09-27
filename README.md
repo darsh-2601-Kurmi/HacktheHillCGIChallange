@@ -38,7 +38,7 @@ On a Mac or Linux laptop with `make`: `make data`, `make run`, `make test`, `mak
 |---|---|
 | `python run.py` | Start the app (builds the data first if missing) and open the browser |
 | `python run.py data` | Rebuild everything derived from `data/raw` |
-| `python run.py test` | 82 tests, including every diagnosis number we quote |
+| `python run.py test` | 85 tests, including every diagnosis number we quote |
 | `python run.py reset` | Clear demo cases and bill corrections (same as the **Reset demo** button) |
 | `python run.py pbip` | Write the Power BI project in `powerbi/` (see below) |
 | `python run.py valuecase` | Write `docs/value_case.md` and a one-page printable `docs/value_case.html`. **Refuses while any cost in `assumptions.yaml` is TBD** |
@@ -76,9 +76,11 @@ in **Transform data → Manage parameters**, or rerun `python run.py pbip`. 64 m
 ## Live deployment (Vercel)
 
 https://northwind-onecase.vercel.app runs the same FastAPI app as one Python function (`api/index.py`, `vercel.json`).
-Vercel's file system is read-only, so on Vercel the app copies `data/northwind.db` to `/tmp` and writes demo cases
-there (`src/config.py`). That copy resets whenever Vercel starts a fresh instance, so the demo always starts clean;
-use **Reset demo** between runs. `.vercelignore` keeps the raw data, exports, tests and Power BI files out of the upload.
+Vercel's file system is read-only, so on Vercel the app works on a `/tmp` copy of `data/northwind.db`
+(`src/config.py`). Each request can land on a different instance with its own copy, so the demo state (cases, their
+timeline, bill corrections) travels with the browser: every API answer carries it in an `X-OneCase-State` header, the
+page keeps it in local storage and sends it back, and the instance restores it first (`src/demo_state.py`, only active
+on Vercel). Every visitor gets their own demo, starting clean; **Reset demo** clears it. `.vercelignore` keeps the raw data, exports, tests and Power BI files out of the upload.
 
 To redeploy from this folder: `python run.py data` (the database is not in git), then `npx vercel deploy --prod`.
 
@@ -124,6 +126,7 @@ src/facts.py           every headline number, computed from the exports (Power B
 src/api.py             FastAPI app, also serves web/
 src/web_exports.py     web/static/data/regions.json for the landing map
 src/pbip.py            powerbi/, the Power BI project (model + nine-page report)
+src/demo_state.py      hosted demo: carries each visitor's cases with the browser (Vercel only)
 api/index.py           Vercel entry point; vercel.json and .vercelignore configure the deploy
 powerbi/               Northwind.pbip (generated)
 web/                   home.html (landing), index.html (agent desk), impact.html, customer.html

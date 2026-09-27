@@ -5,14 +5,15 @@
 """
 from __future__ import annotations
 
+import asyncio
 from contextlib import contextmanager
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import billcheck, cases, legacy, routing, scenario
+from . import billcheck, cases, demo_state, legacy, routing, scenario
 from .config import DB_PATH, WEB, connect, load_assumptions, val
 from .synth_accounts import DEMO
 
@@ -27,6 +28,25 @@ def db():
         yield con
     finally:
         con.close()
+
+
+# On Vercel the demo state travels with the browser (see demo_state.py); one request at a time per instance.
+STATEFUL = ("/reset", "/intake", "/cases", "/legacy-path", "/accounts", "/billcheck", "/customer/check")
+_state_lock = asyncio.Lock()
+
+
+@app.middleware("http")
+async def carry_demo_state(request: Request, call_next):
+    if not demo_state.ENABLED or not request.url.path.startswith(STATEFUL):
+        return await call_next(request)
+    async with _state_lock:
+        with db() as con:
+            cases.ensure_schema(con)
+            demo_state.load(con, request.headers.get(demo_state.HEADER))
+        response = await call_next(request)
+        with db() as con:
+            response.headers[demo_state.HEADER] = demo_state.dump(con)
+    return response
 
 
 # --------------------------------------------------------------------------- models

@@ -66,8 +66,12 @@ $("#f").addEventListener("submit", e => { e.preventDefault(); check(); });
 async function check() {
   $("#err").textContent = ""; $("#go").disabled = true;
   try {
-    const r = await fetch("/customer/check", { method: "POST", headers: { "Content-Type": "application/json" },
+    let saved = null; try { saved = localStorage.getItem("onecase-state"); } catch {}   // hosted demo: see desk.js
+    const r = await fetch("/customer/check", { method: "POST",
+      headers: { "Content-Type": "application/json", ...(saved ? { "X-OneCase-State": saved } : {}) },
       body: JSON.stringify({ account_id: $("#acc").value }) });
+    const next = r.headers.get("X-OneCase-State");
+    if (next !== null) { try { localStorage.setItem("onecase-state", next); } catch {} }
     const j = await r.json();
     if (!r.ok) throw new Error(r.status === 404 ? "We couldn't find that account number. Check it against your bill." : j.detail);
     render(j);

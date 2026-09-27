@@ -5,9 +5,20 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const state = { meta: null, account: null, case: null, mode: "onecase", seen: new Set() };
 
+// On the hosted demo the server hands back the demo state (cases, bill corrections) with each answer; send it back
+// next time so whichever server instance answers knows this visitor's cases. Locally the server sends none.
+const STATE_KEY = "onecase-state", STATE_HEADER = "X-OneCase-State";
+function savedState() { try { return localStorage.getItem(STATE_KEY); } catch { return null; } }
+function keepState(r) {
+  const s = r.headers.get(STATE_HEADER);
+  if (s !== null) { try { localStorage.setItem(STATE_KEY, s); } catch { /* private mode: state lasts one request */ } }
+}
+
 async function api(path, opts = {}) {
-  const r = await fetch(path, { headers: { "Content-Type": "application/json" }, ...opts,
+  const s = savedState();
+  const r = await fetch(path, { ...opts, headers: { "Content-Type": "application/json", ...(s ? { [STATE_HEADER]: s } : {}) },
     body: opts.body ? JSON.stringify(opts.body) : undefined });
+  keepState(r);
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(j.detail || `${r.status} ${r.statusText}`);
   return j;
