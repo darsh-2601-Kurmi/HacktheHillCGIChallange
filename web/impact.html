@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OneCase impact</title>
+<link rel="stylesheet" href="/static/app.css">
+<style>
+  @media (max-width: 1440px) { html { font-size: 16px; } }
+  .wrap { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 14px; padding: 14px; align-items: start; }
+  @media (max-width: 1000px) { .wrap { grid-template-columns: 1fr; } }
+  .col { padding: 16px 18px; }
+  .presets { display: grid; gap: 6px; }
+  .presets button { text-align: left; border: 1.5px solid var(--rule); background: #fff; border-radius: var(--r); padding: 7px 10px;
+    cursor: pointer; font-size: .88rem; }
+  .presets button:hover { border-color: var(--action); }
+  .presets button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .lever { margin-top: 14px; }
+  .lever .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .lever label { font-size: .88rem; font-weight: 600; color: var(--ink-2); }
+  .lever output { font-family: var(--display); font-weight: 700; font-size: 1.2rem; }
+  .lever small { display: block; font-size: .74rem; color: var(--muted); }
+  input[type=range] { width: 100%; accent-color: var(--action); height: 28px; }
+  .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+  @media (max-width: 1200px) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tile { padding: 12px 14px; }
+  .tile .label { font-size: .8rem; color: var(--ink-2); }
+  .tile .value { font-family: var(--display); font-weight: 700; font-size: 2rem; line-height: 1.1; margin-top: 2px; }
+  .tile .sub { font-size: .78rem; color: var(--ink-2); margin-top: 3px; }
+  .tile .sub b { font-family: var(--display); }
+  .charts { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; margin-top: 10px; }
+  @media (max-width: 1200px) { .charts { grid-template-columns: 1fr; } }
+  .chart { padding: 12px 14px; }
+  .chart h2 { font-size: 1.05rem; }
+  .chart p.sub { font-size: .8rem; color: var(--ink-2); margin: 2px 0 0; }
+  .foot { font-size: .75rem; color: var(--muted); margin: 10px 2px 0; }
+  .verdict { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 10px; padding: 10px 14px; border-radius: 8px; }
+  .verdict.no { background: var(--flag-wash); color: var(--flag); }
+  .verdict.yes { background: var(--pass-wash); color: var(--pass); }
+  .views { font-size: .8rem; color: var(--ink-2); margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--rule-2); }
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="brand">NORTHWIND <b>OneCase</b><small>impact</small></div>
+  <nav aria-label="Pages">
+    <a href="/">Home</a><a href="/desk">Agent desk</a><a href="/impact" aria-current="page">Impact</a><a href="/customer">Check my bill</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="plate" title="Scenario engine: data pack + assumptions.yaml">Model · assumptions.yaml</span>
+</header>
+<main class="wrap">
+  <section class="panel col" aria-labelledby="lev-h">
+    <p class="eyebrow" id="lev-h">Scenarios</p>
+    <div class="presets" id="presets"></div>
+    <p class="eyebrow" style="margin-top:18px">Levers</p>
+    <div id="levers"></div>
+    <p class="views"><b>Two views of days to close.</b> Plan method: per-case savings subtracted from today's 38.2 days.
+      Backlog-aware: also lets days fall as the open backlog clears (history: +0.017 days per open case, r = 0.98).</p>
+  </section>
+  <section>
+    <p class="verdict" id="verdict" aria-live="polite"></p>
+    <div class="tiles" id="tiles"></div>
+    <div class="charts">
+      <div class="panel chart"><h2>Regulator score, next 12 months</h2><p class="sub">Model: score = 5.316 − 0.069 × days to close</p>
+        <div class="legend" id="score-legend"></div><div id="score-chart"></div></div>
+      <div class="panel chart"><h2>Open backlog</h2><p class="sub">Complaints waiting at month end</p>
+        <div class="legend" id="backlog-legend"></div><div id="backlog-chart"></div></div>
+    </div>
+    <p class="foot" id="foot"></p>
+  </section>
+</main>
+<script type="module" src="/static/impact.js"></script>
+</body>
+</html>

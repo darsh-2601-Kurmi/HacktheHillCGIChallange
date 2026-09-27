@@ -1,0 +1,76 @@
+{
+ "period": "2024-10 to 2026-09",
+ "total_complaints": 25416,
+ "transfer_share": 0.34899276046584826,
+ "days_transferred": 38.244692600319055,
+ "days_not_transferred": 22.966236916007148,
+ "transfer_by_intake": {
+  "SYS-01 Aurora Billing": 0.47059731440037045,
+  "SYS-03 Northwind Connect": 0.46370582617000955,
+  "SYS-04 CaseTrack": 0.0,
+  "SYS-05 CallCentre One": 0.4562284279887041
+ },
+ "regions": [
+  {
+   "name": "Ashford",
+   "complaints": 4269,
+   "water": 248,
+   "electricity": 4021,
+   "last_month": 197,
+   "smart_meter_penetration": 0.806,
+   "estimated_read_rate": 0.25,
+   "transfer_rate": 0.36167720777699697
+  },
+  {
+   "name": "Barrowdale",
+   "complaints": 4295,
+   "water": 145,
+   "electricity": 4150,
+   "last_month": 214,
+   "smart_meter_penetration": 0.0,
+   "estimated_read_rate": 0.62,
+   "transfer_rate": 0.3590221187427241
+  },
+  {
+   "name": "Calderfield",
+   "complaints": 4118,
+   "water": 255,
+   "electricity": 3863,
+   "last_month": 211,
+   "smart_meter_penetration": 0.806,
+   "estimated_read_rate": 0.214,
+   "transfer_rate": 0.34312773190869356
+  },
+  {
+   "name": "Dunmoor",
+   "complaints": 4320,
+   "water": 148,
+   "electricity": 4172,
+   "last_month": 209,
+   "smart_meter_penetration": 0.0,
+   "estimated_read_rate": 0.615,
+   "transfer_rate": 0.3435185185185185
+  },
+  {
+   "name": "Eastmarch",
+   "complaints": 4180,
+   "water": 252,
+   "electricity": 3928,
+   "last_month": 207,
+   "smart_meter_penetration": 0.806,
+   "estimated_read_rate": 0.18,
+   "transfer_rate": 0.34282296650717703
+  },
+  {
+   "name": "Fenwick",
+   "complaints": 4234,
+   "water": 265,
+   "electricity": 3969,
+   "last_month": 213,
+   "smart_meter_penetration": 0.806,
+   "estimated_read_rate": 0.262,
+   "transfer_rate": 0.34341048653755313
+  }
+ ],
+ "source": "region_month + complaint_360 (northwind_complaints.csv, northwind_meter_reads.csv)"
+}

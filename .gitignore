@@ -1,0 +1,18 @@
+.vercel
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Rebuilt by `python run.py data` (and built automatically on the first `python run.py`)
+data/northwind.db
+data/northwind.db-journal
+data/synthetic/
+
+# Power BI local state (cache, per-user settings)
+powerbi/**/.pbi/
+
+# The Northwind data pack and everything derived from it stay private (not in git)
+data/raw/
+data/exports/
+*.csv
+!data/routing_rules.csv

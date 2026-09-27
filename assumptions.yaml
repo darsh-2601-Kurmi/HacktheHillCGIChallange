@@ -1,0 +1,113 @@
+# Northwind OneCase: every number the scenario engine and the value case use.
+#
+# Each entry is {value, source}. Sources are one of:
+#   data  -> a file in data/raw (named), reproducible with `python run.py data`
+#   team  -> OUR estimate, declared as such; change it here and everything re-flows
+#   TBD   -> must be set by the team before `python run.py valuecase` will run
+#
+# Per-case figures (transfer share, days transferred vs not, information-only share,
+# correction rates, queue slope) are NOT typed in here: the engine derives them from
+# the data every run so they cannot drift. `python -m src.scenario --calibration` prints them.
+
+baseline:
+  month: {value: "2026-09", source: "data: last month in northwind_monthly_kpis.csv"}
+  avg_days_to_close: {value: 38.2, source: "data: northwind_monthly_kpis.csv, 2026-09"}
+  open_backlog: {value: 1599, source: "data: northwind_complaints.csv, status = Open"}
+  monthly_opened: {value: 1185, source: "data: northwind_monthly_kpis.csv, mean of 2026-04..2026-09"}
+  monthly_closed: {value: 1129, source: "data: northwind_monthly_kpis.csv, mean of 2026-04..2026-09 (1128.8)"}
+  regulator_score: {value: 2.58, source: "data: northwind_monthly_kpis.csv, 2026-09"}
+
+score_model:
+  intercept: {value: 5.316, source: "data: OLS of regulator score on avg days to close, 24 KPI months, r = -0.98"}
+  slope_per_day: {value: -0.069, source: "data: same fit"}
+  target: {value: 4.0, source: "client brief: above 4.0 within 12 months"}
+  cap: {value: 5.0, source: "score is out of 5"}
+  floor: {value: 1.0, source: "team: scale floor"}
+
+unit_costs:
+  complaint_avg: {value: 68, source: "data: northwind_unit_costs.csv"}
+  complaint_transferred: {value: 121, source: "data: northwind_unit_costs.csv"}
+  bill_correction: {value: 34, source: "data: northwind_unit_costs.csv"}
+  field_visit: {value: 92, source: "data: northwind_unit_costs.csv"}
+  call: {value: 7.4, source: "data: northwind_unit_costs.csv"}
+  agent_fte_year: {value: 46000, source: "data: northwind_unit_costs.csv"}
+  regulator_penalty_quarter: {value: 2400000, source: "data: northwind_unit_costs.csv (Regulatory Affairs estimate)"}
+  ai_pilot_year: {value: 640000, source: "data: northwind_unit_costs.csv (SYS-15 contract)"}
+
+levers:
+  transfers_removed:           {min: 0, max: 1,  default: 0, label: "Transfers removed (share)"}
+  info_only_first_contact:     {min: 0, max: 1,  default: 0, label: "Information-only answered at first contact (share)"}
+  estimated_read_reduction:    {min: 0, max: 1,  default: 0, label: "Estimate-driven complaints avoided (share)"}
+  calderfield_agents_restored: {min: 0, max: 35, default: 0, label: "Calderfield agents restored (FTE)"}
+
+calibration:
+  # Months of closed complaints used for per-case days. 24 = the whole file, which gives the
+  # plan's 38.2 vs 23.0. A shorter window (e.g. 3) uses today's larger gap and saves more days.
+  window_months: {value: 24, source: "team: matches the diagnosis numbers quoted in the pitch"}
+  # Additive (plan): baseline 38.2 minus the days saved on the historical mix. Conservative.
+  saving_method: {value: additive, source: "team: plan phase 2"}
+
+queue_model:
+  # The KPI series shows days-to-close tracks the open backlog (r = 0.99). The static method
+  # ignores that; the queue view adds it. `headline: false` keeps the plan's static method as
+  # the number on screen and in the value case, and shows the queue view alongside it.
+  headline: {value: false, source: "team decision (see README, 'Two views of days to close')"}
+  floor_days: {value: 8, source: "team: ~intercept of days vs backlog fit (7.8), i.e. days with no queue"}
+  fit_skip_months: {value: 2, source: "team: first 2 months of the file start with no carried-in backlog"}
+
+team_estimates:
+  info_only_days_if_first_contact: {value: 1, source: "team"}
+  first_contact_unit_cost: {value: 7.4, source: "team: an answered information-only case costs one handled call"}
+  months_to_full_effect: {value: 6, source: "team"}
+  # Cost lines: set these before generating the value case.
+  onecase_build_cost: {value: TBD, source: "team to set; value case shows the sensitivity"}
+  onecase_run_cost_year: {value: TBD, source: "team to set"}
+  billing_feedback_loop_cost: {value: TBD, source: "team to set"}
+  penalty_quarters_at_risk: {value: TBD, source: "team to set: quarters of enhanced monitoring avoided"}
+  penalty_probability: {value: TBD, source: "team to set: probability the penalty is actually applied"}
+
+# Bill check thresholds (phase 5). Rules live in src/billcheck.py.
+bill_check:
+  min_difference_dollars: {value: 5, source: "team: ignore differences below this"}
+  consecutive_estimates: {value: 3, source: "team: plan phase 5"}
+  recent_increase_ratio: {value: 1.15, source: "team: latest bill vs average of previous 3"}
+  seasonal_band: {value: 0.15, source: "team: within +/-15% of same month last year = seasonal"}
+  usage_up_vs_last_year: {value: 1.30, source: "team"}
+
+# Synthetic tariff (phase 3). Synthetic data only, not a real tariff.
+synthetic_tariff:
+  rate_per_kwh: {value: 0.28, source: "team: synthetic"}
+  standing_charge_per_day: {value: 0.55, source: "team: synthetic"}
+
+# The five named scenarios (plan, phase 2). Lever values carry their own justification.
+scenarios:
+  - id: status_quo
+    name: "Status quo"
+    levers: {}
+    build_cost_keys: []
+    run_cost_keys: []
+    note: "Nothing changes; intake keeps outpacing closures."
+  - id: client_ai_plan
+    name: "Client's plan: AI assistant only"
+    levers: {info_only_first_contact: 0.132}
+    build_cost_keys: []
+    run_cost_keys: [ai_pilot_year]
+    note: "Pilot containment averaged 13.2% over 9 months (16% falling to 10%), applied to information-only cases."
+  - id: routing_fix
+    name: "Routing fix only (OneCase)"
+    levers: {transfers_removed: 0.9}
+    build_cost_keys: [onecase_build_cost]
+    run_cost_keys: [onecase_run_cost_year]
+    note: "CaseTrack intake already runs at 0% transfers on 6,281 cases; we assume 10% of handovers stay genuine."
+  - id: recommended
+    name: "Recommended: OneCase + first-contact answers + billing feedback loop"
+    levers: {transfers_removed: 0.9, info_only_first_contact: 0.6, estimated_read_reduction: 0.5}
+    build_cost_keys: [onecase_build_cost, billing_feedback_loop_cost]
+    run_cost_keys: [onecase_run_cost_year]
+    note: "60% of information-only answered on the one screen (team estimate). Feedback loop avoids ~half of estimate complaints: 4 of 6 regions are smart and 81% penetrated (0.67 x 0.81 = 0.54)."
+  - id: everything_max
+    name: "Everything at maximum (ceiling)"
+    levers: {transfers_removed: 1, info_only_first_contact: 1, estimated_read_reduction: 1, calderfield_agents_restored: 35}
+    build_cost_keys: [onecase_build_cost, billing_feedback_loop_cost]
+    run_cost_keys: [onecase_run_cost_year]
+    note: "Every lever at its limit. Shows the ceiling, not a plan."

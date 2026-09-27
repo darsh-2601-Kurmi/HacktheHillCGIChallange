@@ -1,0 +1,246 @@
+# Northwind OneCase
+
+Hack the Hill III, CGI track. **One intake, one case, one screen.**
+Every complaint, from any channel, opens a single case with its full history, so there is no handover.
+The agent sees account, bills, meter reads and past complaints on one screen. A rules-based bill check
+compares what was charged with the digital read and proposes the fix. A scenario engine answers
+"is a 4.0 regulator score reachable in 12 months, and what is each fix worth?"
+
+**Live demo: https://northwind-onecase.vercel.app** · [agent desk](https://northwind-onecase.vercel.app/desk) ·
+[impact](https://northwind-onecase.vercel.app/impact) · [check my bill](https://northwind-onecase.vercel.app/customer) ·
+[API docs](https://northwind-onecase.vercel.app/docs)
+
+Everything also runs on localhost and works offline. No login, no CDN.
+
+| What we found | Number |
+|---|---|
+| The regulator score tracks days to close | r = −0.98; 4.0 needs about 19 days, today 38.2 |
+| A transferred complaint vs one that isn't | 38.2 vs 23.0 days, 89% vs 70% miss SLA, 27% vs 8% reopen, $121 vs $68 |
+| Transfers depend on the intake system | 0% from CaseTrack, 46–47% from the other three; flat 33–37% on every other split |
+| Billing ignores the smart meters | smart meters 30% → 81% of homes, estimated bills still 21–23% |
+| The 2025 AI pilot | containment 16% → 10%, repeat contact 31% → 45% |
+| Reaching 4.0 | recommended package: 3.23 per-case only; 4.0 by month 5 if the backlog clears as history suggests |
+
+## Setup (3 commands)
+
+**The Northwind data pack is not in this repository.** Copy its CSVs into `data/raw/` first (the file names are
+listed in `src/config.py`, `RAW_FILES`). Everything else is rebuilt from them.
+
+```bash
+pip install -r requirements.txt
+python run.py data      # builds data/northwind.db and every derived file from data/raw (~30 s)
+python run.py           # http://localhost:8000
+```
+
+On a Mac or Linux laptop with `make`: `make data`, `make run`, `make test`, `make valuecase`, `make reset`.
+
+| Command | What it does |
+|---|---|
+| `python run.py` | Start the app (builds the data first if missing) and open the browser |
+| `python run.py data` | Rebuild everything derived from `data/raw` |
+| `python run.py test` | 85 tests, including every diagnosis number we quote |
+| `python run.py reset` | Clear demo cases and bill corrections (same as the **Reset demo** button) |
+| `python run.py report` | Write `docs/report.html`, the nine-page diagnosis report, and open it. Also rebuilt by `python run.py data` |
+| `python -m src.pbip` | Write the Power BI project in `powerbi/` (see below) |
+| `python run.py valuecase` | Write `docs/value_case.md` and a one-page printable `docs/value_case.html`. **Refuses while any cost in `assumptions.yaml` is TBD** |
+| `python -m src.scenario` | Print the five named scenarios and write the scenario exports |
+| `python -m src.scenario --transfers 1 --info 0.5` | One custom scenario |
+| `python -m src.scenario --calibration` | Every number the engine derives from the data, with its source |
+
+## Pages
+
+| URL | Purpose |
+|---|---|
+| `/` (also `/home`) | Landing page: headline numbers, water and electricity tiles |
+| `/desk` | Agent desk: the live demo. Demo customers A to E, before/after toggle, Reset |
+| `/impact` | Scenario page with live levers. Same engine and assumptions as the exports and the report |
+| `/customer` | "Check my bill": rules-based self-service that creates or joins the same OneCase case |
+| `/docs` | API docs (FastAPI) |
+
+API: `POST /intake`, `GET /cases/{id}`, `POST /cases/{id}/actions`, `GET /accounts/{id}`, `GET /legacy-path/{id}`,
+`GET /scenario?transfers=&info=&estimates=&agents=`, `GET /scenarios`, `GET /billcheck/{account}`, `POST /reset`, `GET /health`.
+
+## Diagnosis report (`docs/report.html`)
+
+The analysis behind the pitch, as one self-contained HTML file with nine pages. It replaces the Power BI plan: no
+Power BI, no server, no network. Double-click the file (or `python run.py report`) and it opens in any browser.
+
+| Page | What it shows |
+|---|---|
+| Summary | Six headline numbers and the six findings, each linking to its page |
+| Score | Score fell every month (4.30 → 2.58) as days to close rose (9.1 → 38.2); fit r = −0.98; 4.0 needs 19.0 days |
+| Transfers | 0% transferred from CaseTrack vs 46–47% from the other intake systems; flat 33–37% on every other split; what a transfer costs |
+| Billing | Billing and metering are 63% of complaints; smart meters 30% → 81% while estimated bills stayed 21% → 23% |
+| Answers & AI | 23.1% only needed an answer yet took 28 days; the 2025 AI pilot got worse every month |
+| Calderfield | Lost half its agents (73 → 37), yet its days to close match every region |
+| Reaching 4.0 | Five scenarios, plan method vs backlog-aware; the recommended package reaches 4.0 in month 5 (backlog-aware) |
+| What-if | Four lever controls over all 375 combinations, with each fix's effect on its own |
+| Method | Files, row counts, definitions and the two models |
+
+- Built by `src/report.py` from `data/exports/*.csv` and the raw AI pilot file, read as-is. Charts are inline SVG from
+  `src/svgchart.py`; a small inline script adds tabs, ← → keys, tooltips, the light/dark switch and the what-if levers.
+  Without JavaScript every page still shows, one after another.
+- Light and dark themes (follows the system; the **Dark/Light** button overrides it). **Print / PDF** prints one page per
+  section. Works on a phone: charts scroll sideways instead of shrinking.
+- `tests/test_report.py` checks every headline number and that the file references nothing online.
+
+## Power BI project (`powerbi/`)
+
+The same nine pages as a Power BI Project, generated by `src/pbip.py` (semantic model as `model.bim`, report in the
+documented PBIR JSON format, light theme). To use it:
+
+1. Open `powerbi/Northwind.pbip` in Power BI Desktop.
+2. Click **Refresh now** in the yellow bar (a project opens without data).
+3. **File → Save as → Browse this device → Power BI file (.pbix)** for a single .pbix.
+
+The model loads `data/exports/*.csv` and the AI pilot file as they are (headers and types only) through the
+**DataFolder** parameter, which holds this project's absolute `data` path. After cloning or moving the project, set it
+in **Transform data → Manage parameters**, or rerun `python -m src.pbip`. 64 measures, grouped in display folders.
+
+## Live deployment (Vercel)
+
+https://northwind-onecase.vercel.app runs the same FastAPI app as one Python function (`api/index.py`, `vercel.json`).
+Vercel's file system is read-only, so on Vercel the app copies `data/northwind.db` to `/tmp` and writes demo cases
+there (`src/config.py`). That copy resets whenever Vercel starts a fresh instance, so the demo always starts clean;
+use **Reset demo** between runs. `.vercelignore` keeps the raw data, exports, tests and Power BI files out of the upload.
+
+To redeploy from this folder: `python run.py data` (the database is not in git), then `npx vercel deploy --prod`.
+
+## Animation and 3D (optional, offline)
+
+- **Legacy toggle on the agent desk.** A 3D stage is built from the real `GET /legacy-path/{id}` response, so it
+  matches the selected case. The *Today* lane shows a complaint particle hopping across that case's systems (A: SYS-05 →
+  CaseTrack → Helix CIS → SmartRead; D: SYS-05 → CaseTrack → GridWatch → Helix). Its trail is wiped at every hop that
+  loses history (re-keyed into CaseTrack, or a nightly batch). A counter climbs to the historical 38.2 days, and a red
+  flag lights up when it passes this case's SLA. The *OneCase* lane then fires one straight beam carrying the case ID:
+  "resolved at first contact", or "routed once" if the case is still open. **Replay** reruns it.
+  The comparison table stays below.
+- **Landing page (`/`).** Two simple animated tiles for the two services: a tap filling a glass (water) and a light
+  bulb switching on (electricity), each with its complaint count (water-network vs electricity and billing) from
+  `web/static/data/regions.json`, rebuilt by `python run.py data`. Plain SVG and CSS, no 3D; the bulb ramps on softly
+  (no flashing), and with `prefers-reduced-motion` the page shows a still frame (full glass, lit bulb).
+- **Libraries.** three.js 0.186.1 (MIT) is vendored in `web/static/vendor/`, from the npm registry tarball with its
+  sha512 verified. No GSAP, no CDN, no build step. The desk loads three.js lazily and never imports it up front.
+- **Fallbacks.** With no WebGL, on a phone or a screen under 900px, if three.js fails to load, or if the WebGL context
+  is lost, the desk shows its flat view (the hop boxes). With `prefers-reduced-motion`, the stage shows its end state.
+  `?flat=1` forces the flat view.
+- **Measured** on this laptop (Intel Iris Xe): the stage animation
+  has p95 frame time 16.9 ms; the only slow frame (about 150 ms) is the view switch itself, before the animation starts.
+
+## Repo layout
+
+```
+data/raw/              the data pack CSVs (not in git: add them locally)
+data/synthetic/        generated accounts, reads, bills, outage flag (SYNTHETIC; not in git, rebuilt)
+data/exports/          derived CSVs for the report and the Power BI project (not in git, rebuilt)
+data/routing_rules.csv the declarative routing table (ours, not data pack)
+assumptions.yaml       every number the engine and value case use, each with a source
+src/load.py            CSV -> SQLite, typed
+src/model360.py        complaint_360, region_month, segment_summary, backlog_month
+src/synth_accounts.py  synthetic reads and bills + demo accounts A-E
+src/scenario.py        scenario and backlog engine (+ CLI)
+src/routing.py         intake routing (reads data/routing_rules.csv)
+src/billcheck.py       bill-vs-read rules
+src/cases.py           the OneCase store: one case, reassign keeps ID and history
+src/legacy.py          simulated "before" path for the toggle
+src/valuecase.py       one-page value case generator
+src/report.py          docs/report.html, the multi-page diagnosis report
+src/svgchart.py        the report's SVG charts (line, bar, column, scatter)
+src/api.py             FastAPI app, also serves web/
+src/web_exports.py     web/static/data/regions.json for the landing map
+src/pbip.py            powerbi/, the Power BI project (model + nine-page report)
+api/index.py           Vercel entry point; vercel.json and .vercelignore configure the deploy
+powerbi/               Northwind.pbip (generated)
+web/                   home.html (landing), index.html (agent desk), impact.html, customer.html
+web/static/            desk.js, legacy3d.js (3D stage), home.js (3D map), gfx.js (3D checks + helpers), vendor/three
+tests/                 pytest; runs on a copy of the database
+docs/                  demo_script.md, report.html (generated), value_case.md (generated)
+```
+
+## Derived files (`data/exports/`)
+
+`python run.py data` writes the tables the report, the value case and the Power BI project read (one row per complaint,
+region × month, the monthly KPIs with the backlog, the five scenarios, the lever grid and the calibration values).
+They are derived from the data pack, so like it they stay out of git.
+
+## Data provenance
+
+- **Real (Northwind data pack, kept out of git):** `data/raw/`. Six files come from `Northwind_Challenge_Data.zip`.
+  `northwind_contact_centre_staffing.csv` comes from `Additional_CGI_Files.zip` because it exists only there.
+  The "Additional" pack also has *different* KPI, meter-read and AI-pilot files (for example, Sep-2026 average days
+  43.8 instead of 38.2). We use the original pack's versions throughout, because every number in our diagnosis comes from them.
+  **If the organisers confirm the Additional files are the official version, replace those three files and rerun
+  `python run.py data` and `python run.py test`. The tests will show which quoted numbers change.**
+- **Synthetic (generated, seeded, labelled on every screen):** account meter reads, bills, tariff, the outage flag,
+  and the customer names on the demo accounts. The data pack has no account-level reads or bills.
+- **Outside sources:** none. Every figure comes from the data pack or a team estimate declared in `assumptions.yaml`.
+
+### How the synthetic data is generated (`src/synth_accounts.py`, seed 20260926)
+
+- One account per `account_id` in the complaints file (25,074; region from its latest complaint), plus 2,000 extra
+  accounts `ACC-S00001`… spread across regions by account count.
+- Smart meter: drawn from the region's `smart_meter_penetration` in the month of the account's latest complaint.
+- 13 monthly periods, 2025-09 to 2026-09. The screen shows the last 12; the 13th allows a same-month-last-year check.
+- Usage: lognormal base (~340 kWh a month) x a seasonal curve peaking in January x 6% noise. Tariff $0.28/kWh plus $0.55/day (synthetic).
+- A bill is estimated with probability equal to the region-month `estimated_read_rate`. **That applies to smart accounts too:
+  this is the diagnosed defect, where a smart read exists but never reaches billing.** Estimates use a flat profile with a +8% bias
+  ("estimation algorithm unchanged since 2012"). Non-smart accounts get a catch-up bill at their next actual read.
+- Complaint accounts with a `bill_correction_value` inside the window get an over-bill of that size on the 2 or 3 bills up
+  to the complaint month. Those bills are marked as corrected by that (closed) complaint.
+- Demo accounts: A, C and D use real account IDs chosen for their real past complaint. B is the first account matching its criteria. E is a synthetic extra.
+  Their 13-month histories are hand-built:
+
+| | Account | Story | Bill check |
+|---|---|---|---|
+| A | ACC-715270, Ashford, smart | Billed on estimates Jul to Sep 2026 while smart reads exist. Last complaint took 95 days, was transferred and reopened | Over-billed $171.08, correct and re-issue |
+| B | ACC-361183, Dunmoor, manual | Four estimates in a row | Book a meter read, not solvable remotely |
+| C | ACC-795813, Calderfield, smart | "Why is my bill higher?" Last explanation took 44 days | Seasonal, explained at first contact |
+| D | ACC-646945, Fenwick, smart | Outage call by phone (SYS-05, previously transferred) | Outage: reminders held, then reassigned on the same case |
+| E | ACC-S00001, Eastmarch, smart | Clean account | Bill verified |
+
+## Scenario engine (`src/scenario.py`)
+
+Days to close use four cells: information-only (yes/no) x transferred (yes/no). Removing transfers gives a
+transferred case the days of its non-transferred twin. First contact then sets an information-only case to 1 day,
+so an information-only case that was also transferred is counted once, never twice (a test proves it).
+The saving on the historical mix is subtracted from today's 38.2 days, which is the plan's method.
+
+The backlog path runs month by month. Intake falls with `estimated_read_reduction`. Information-only cases answered
+at first contact never queue. Capacity is measured in effort, where a transferred case costs 121/68 = 1.78 units,
+so removing transfers frees capacity. Every lever ramps to full effect over 6 months.
+
+### Two views of days to close: a team decision
+
+While building this we found that the KPI's `avg_days_to_close` is the average for complaints *closed* that month,
+and that it tracks the open backlog almost exactly: **days ≈ 7.8 + 0.020 × open backlog, r = 0.99**.
+Non-transferred cases slowed from 15 to 31 days over the 24 months purely because the queue grew.
+The plan's static method does not capture that, so the engine reports both views:
+
+| Scenario | Plan method, month 12 | Backlog-aware, month 12 |
+|---|---|---|
+| Status quo | 38.2 days, score 2.68 | 49.0 days, score 1.93 (keeps getting worse) |
+| Client's plan: AI only | 37.3 days, 2.74 | 42.3 days, 2.40 |
+| Routing fix only | 33.5 days, 3.00 | 11.9 days, 4.50 (4.0 in month 8) |
+| **Recommended package** | **30.2 days, 3.23** | **8.0 days, 4.76 (4.0 in month 5)** |
+| Everything at maximum | 27.6 days, 3.41 | 8.0 days, 4.76 (4.0 in month 4) |
+
+The plan method is the headline (`queue_model.headline: false` in `assumptions.yaml`). It is conservative, and it matches
+the diagnosis message that no single fix reaches 4.0. The backlog-aware view is the upside case: it depends on a
+correlation and on our effort-based capacity model. The impact page shows both lines, and one line in the YAML switches the headline.
+
+## Things the data says that differ slightly from the plan
+
+- The transfer rate by category, channel, priority, region and quarter ranges **32.9% to 37.0%**, not 34 to 37%.
+  The lowest is "Other" (671 cases) and Regulator referral.
+- The score model at 38.2 days gives **2.68**; the actual Sep-2026 score was 2.58 (the regression residual).
+- Calderfield's collapse is 73 → 37 agents in this file (72 in some months). Its days and breach rate still match the other regions.
+
+## Known limitations
+
+- The legacy path is **simulated**. The data pack logs every channel in all four intake systems, so channel-to-system is our mapping.
+  Systems, notes and odds come from the data.
+- Capacity is modelled as effort (121/68) plus headcount. The data shows closures did not fall when Calderfield lost
+  half its agents, so the agents lever is probably generous, even though it is small.
+- The outage flag is a placeholder, not a GridWatch feed.
+- Rules, not AI. There is no free-text understanding: the agent picks the category.
+- Value case costs (`onecase_build_cost`, run cost, feedback loop, penalty quarters and probability) are **TBD** until the team sets them.

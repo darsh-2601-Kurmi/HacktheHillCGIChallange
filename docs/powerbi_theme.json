@@ -1,0 +1,28 @@
+{
+  "name": "Northwind OneCase",
+  "dataColors": ["#2A78D6", "#EB6834", "#1BAF7A", "#EDA100", "#E87BA4", "#008300", "#4A3AA7", "#E34948"],
+  "background": "#FFFFFF",
+  "foreground": "#0D1B26",
+  "tableAccent": "#1543C4",
+  "good": "#0B7A3F",
+  "bad": "#C2302A",
+  "neutral": "#6F7C87",
+  "textClasses": {
+    "title": { "fontFace": "Bahnschrift", "fontSize": 16, "color": "#0D1B26" },
+    "header": { "fontFace": "Bahnschrift", "fontSize": 14, "color": "#0D1B26" },
+    "callout": { "fontFace": "Bahnschrift", "fontSize": 32, "color": "#0D1B26" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 12, "color": "#3F4D59" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } } }],
+        "border": [{ "show": false }],
+        "dropShadow": [{ "show": false }]
+      }
+    },
+    "page": {
+      "*": { "background": [{ "color": { "solid": { "color": "#E9EEF1" } }, "transparency": 0 }] }
+    }
+  }
+}

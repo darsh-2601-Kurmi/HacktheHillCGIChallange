@@ -1,0 +1,11 @@
+# Not needed by the live app (it runs from data/northwind.db, web/, assumptions.yaml, data/routing_rules.csv)
+data/raw
+data/synthetic
+data/exports
+powerbi
+tests
+docs/powerbi_guide.md
+docs/powerbi_theme.json
+**/__pycache__
+**/.pytest_cache
+*.pbix

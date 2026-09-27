@@ -1,0 +1,21 @@
+rule_id,category,priority,region,condition,owning_team,needs_field_visit,first_contact,note
+R01,Billing - estimated read,*,*,estimate_with_smart_read,Billing resolution,no,yes,Smart read exists: correct the bill on this call
+R02,Billing - estimated read,*,*,no_smart_meter,Metering,yes,no,No smart meter: book a meter read
+R03,Billing - estimated read,*,*,always,Billing resolution,no,yes,Estimate already corrected or within tolerance: confirm and close
+R04,Billing - disputed amount,*,*,estimate_with_smart_read,Billing resolution,no,yes,Smart read exists: correct the bill on this call
+R05,Billing - disputed amount,*,*,repeated_estimates_no_smart,Metering,yes,no,Repeated estimates and no smart meter: book a meter read
+R06,Billing - disputed amount,*,*,explainable,First-contact agent,no,yes,Information-only: explain usage or season
+R07,Billing - disputed amount,*,*,bill_verified,First-contact agent,no,yes,Bill verified: walk the customer through it
+R08,Billing - disputed amount,*,*,always,Billing resolution,no,no,Needs a billing specialist
+R09,Metering - no read taken,*,*,smart_meter,Billing resolution,no,yes,Smart meter is reading: billing must use it (SYS-06/SYS-07 gap)
+R10,Metering - no read taken,*,*,always,Metering,yes,no,Book a meter read
+R11,Supply - interruption,*,*,outage_active,Network,no,yes,Known outage: link the case and hold billing reminders
+R12,Supply - interruption,*,*,always,Network,yes,no,No known outage: dispatch
+R13,Water - pressure or quality,P1,*,always,Water operations,yes,no,Priority water issue: emergency dispatch
+R14,Water - pressure or quality,*,*,always,Water operations,yes,no,Water network team (SYS-10)
+R15,Service - missed appointment,*,*,always,Field scheduling,yes,yes,Rebook on the call and offer the regulated compensation
+R16,Payment - plan or arrears,*,*,always,Payments,no,yes,Payment plan change on the call
+R17,Service - poor communication,*,*,always,First-contact agent,no,yes,Information-only likely
+R18,Other,*,*,explainable,First-contact agent,no,yes,Information-only: explain usage or season
+R19,Other,*,*,always,First-contact agent,no,yes,Information-only likely
+R99,*,*,*,always,First-contact agent,no,yes,Fallback

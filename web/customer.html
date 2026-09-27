@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check my bill</title>
+<link rel="stylesheet" href="/static/app.css">
+<style>
+  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 40px; }
+  .card { padding: 22px 24px; margin-top: 14px; }
+  h1 { font-size: 2rem; }
+  .lede { color: var(--ink-2); margin: 6px 0 0; }
+  .row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .row .input { flex: 1 1 220px; font-size: 1.1rem; }
+  .try { font-size: .85rem; color: var(--ink-2); margin-top: 10px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .try button { border: 1.5px solid var(--rule); background: #fff; border-radius: 99px; padding: 3px 11px; cursor: pointer; font-size: .85rem; }
+  .try button:hover { border-color: var(--action); color: var(--action); }
+  .result h2 { font-size: 1.5rem; margin: 8px 0 6px; }
+  .said { font-size: 1.1rem; line-height: 1.5; }
+  .breakdown { margin-top: 14px; padding: 12px 14px; background: var(--paper); border-radius: 8px; font-size: .95rem; }
+  .next { margin-top: 14px; padding: 12px 14px; border-radius: 8px; font-size: 1rem; }
+  .next.case { background: var(--info-wash); }
+  .next.ok { background: var(--pass-wash); }
+  .limits { font-size: .88rem; color: var(--ink-2); }
+  .limits ul { margin: 6px 0 0; padding-left: 20px; }
+  .err { color: var(--flag); margin-top: 10px; min-height: 1.2em; }
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="brand">NORTHWIND <b>OneCase</b><small>check my bill</small></div>
+  <nav aria-label="Pages">
+    <a href="/">Home</a><a href="/desk">Agent desk</a><a href="/impact">Impact</a><a href="/customer" aria-current="page">Check my bill</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="plate">Synthetic data</span>
+</header>
+<main>
+  <section class="panel card">
+    <h1>Check my bill</h1>
+    <p class="lede">We compare what we charged with your meter readings and tell you what we find, in plain words.</p>
+    <form class="row" id="f"><input class="input mono" id="acc" placeholder="Account number, e.g. ACC-715270" required aria-label="Account number">
+      <button class="btn" type="submit" id="go">Check my bill</button></form>
+    <div class="try">Try a demo account: <span id="demos"></span></div>
+    <div class="err" id="err" role="alert"></div>
+  </section>
+  <section class="panel card result" id="result" hidden aria-live="polite"></section>
+  <section class="panel card limits">
+    <b>What this page can and can't do</b>
+    <ul>
+      <li>It runs the same rules our agents use. It is not a chatbot and does not guess.</li>
+      <li>Without a smart meter, the most it can do is book a meter reading.</li>
+      <li>It can't change payments or payment plans. Call us for that.</li>
+      <li>Anything it opens lands on the same case an agent sees, so you never have to explain twice.</li>
+    </ul>
+  </section>
+</main>
+<script type="module">
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const meta = await (await fetch("/meta")).json();
+$("#demos").innerHTML = meta.demo.map(d => `<button type="button" data-id="${d.account_id}">${d.label}</button>`).join(" ");
+$("#demos").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { $("#acc").value = b.dataset.id; check(); } });
+$("#f").addEventListener("submit", e => { e.preventDefault(); check(); });
+
+async function check() {
+  $("#err").textContent = ""; $("#go").disabled = true;
+  try {
+    const r = await fetch("/customer/check", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ account_id: $("#acc").value }) });
+    const j = await r.json();
+    if (!r.ok) throw new Error(r.status === 404 ? "We couldn't find that account number. Check it against your bill." : j.detail);
+    render(j);
+  } catch (e) { $("#err").textContent = e.message; $("#result").hidden = true; }
+  finally { $("#go").disabled = false; }
+}
+
+function render({ check: k, case: c, linked_existing }) {
+  let next;
+  if (c && linked_existing) next = `<div class="next case">This is linked to your open case <b class="mono">${esc(c.case_id)}</b>
+    (${esc(c.owning_team)}). You don't need to call or explain again.</div>`;
+  else if (c && k.outcome === "estimate_with_smart_read") next = `<div class="next case">We've opened a correction: case
+    <b class="mono">${esc(c.case_id)}</b>. Your bills will be re-issued on your actual smart readings. You don't need to call.</div>`;
+  else if (c) next = `<div class="next case">We've opened case <b class="mono">${esc(c.case_id)}</b> and will book a meter reading.
+    Your next bill will use the actual reading.</div>`;
+  else next = `<div class="next ok">Nothing to fix, so no case was opened.</div>`;
+  const status = k.status === "flag" ? "flag" : k.status === "pass" ? "pass" : "info";
+  $("#result").innerHTML = `<span class="status ${status}">${status === "flag" ? "We found a problem" : status === "pass" ? "Bill is correct" : "Explained"}</span>
+    <h2>${esc(k.headline)}</h2><p class="said">${esc(k.explanation)}</p>
+    <div class="breakdown"><p class="eyebrow">Your latest bill</p>${esc(k.breakdown)}</div>${next}`;
+  $("#result").hidden = false;
+}
+</script>
+</body>
+</html>

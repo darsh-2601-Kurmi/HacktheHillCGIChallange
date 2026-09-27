@@ -1,0 +1,3404 @@
+{
+  "compatibilityLevel": 1606,
+  "model": {
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DataFolder\", \"complaint_360\", \"region_month\", \"backlog_month\", \"scenarios\", \"lever_grid\", \"ai_pilot\", \"Regions\", \"_Measures\"]"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Entities": {
+              "regions.region": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Regions",
+                    "ConceptualProperty": "region"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Region": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "scenarios.scenario": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "scenarios",
+                    "ConceptualProperty": "Scenario"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Scenario": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.agents": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Agents"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Agents": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.agents_first_month": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Agents first month"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Agents Oct 2024": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.agents_last_month": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Agents last month"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Agents Sep 2026": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.assistant_csat": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Assistant CSAT"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "CSAT": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.avg_days_infoonly": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Avg days info-only"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Average days to close them": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.avg_days_kpi": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Avg days (KPI)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Days to close": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.avg_days_since_mar_2026": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Avg days since Mar 2026"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Days to close": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.avg_days_to_close": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Avg days to close"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Avg days to close": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.avg_handling_cost": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Avg handling cost"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Handling cost": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.backlog_month_12": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Backlog month 12"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Open backlog, month 12": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.billing_and_metering_share": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Billing and metering share"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Complaints about bills and meter reads": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.billing_fixed_share": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Billing fixed share"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Billing complaints ending in a correction or refund": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.casetrack_note": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "CaseTrack note"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "CaseTrack (SYS-04) system note, in the data pack": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.complaint_after_session": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Complaint after session"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Complaint after session": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.complaints": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Complaints"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Complaints": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.complaints_since_mar_2026": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Complaints since Mar 2026"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Complaints since Mar 2026": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.containment": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Containment"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Fully contained": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.days_needed_for_4_0": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Days needed for 4.0"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Days to close needed for 4.0": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.days_today": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Days today"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Days to close, Sep 2026": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.estimated_bills_now_smart_regions": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Estimated bills now (smart regions)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Bills on an estimate in smart-meter regions, Sep 2026": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.estimated_bills_smart_regions": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Estimated bills (smart regions)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Bills on an estimate": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.infoonly_complaints": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Info-only complaints"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Complaints that only needed an answer": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.infoonly_share": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Info-only share"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Share of all complaints": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.needed_for_4_0": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Needed for 4.0"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Needed for 4.0": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.open_backlog": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Open backlog"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Open complaints": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.open_complaints": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Open complaints"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Still open": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.reaches_4_0_backlogaware": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Reaches 4.0 (backlog-aware)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Reaches 4.0 (backlog-aware)": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.regulator_score": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Regulator score"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Score": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.reopen_rate": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Reopen rate"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Reopened": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.repeat_contact_in_7_days": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Repeat contact in 7 days"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Repeat contact in 7 days": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.saving_a_year": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Saving a year"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Handling saving a year": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.score_backlogaware": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Score backlog-aware"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Score": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.score_month_12_backlogaware": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Score month 12 backlog-aware"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Score, month 12 (backlog-aware)": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.score_month_12_plan": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Score month 12 plan"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Score, month 12 (plan method)": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.score_plan_method": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Score plan method"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Score": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.score_today": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Score today"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Regulator score, Sep 2026": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.sla_breach_rate": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "SLA breach rate"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Missed SLA": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.sla_breach_since_mar_2026": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "SLA breach since Mar 2026"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Missed SLA": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.smart_meters_smart_regions": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Smart meters (smart regions)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Homes with a smart meter": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.target_4_0": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Target 4.0"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Target": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.transfer_rate": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Transfer rate"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Passed between systems": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.transfer_rate_infoonly": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Transfer rate info-only"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Transferred between systems": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.transfer_rate_since_mar_2026": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Transfer rate since Mar 2026"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Transferred": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.whatif_backlog": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "What-if backlog"
+                  }
+                },
+                "State": "Generated"
+              },
+              "table_measures.whatif_days": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "What-if days"
+                  }
+                },
+                "State": "Generated"
+              },
+              "table_measures.whatif_saving_a_year": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "What-if saving a year"
+                  }
+                },
+                "State": "Generated"
+              },
+              "table_measures.whatif_score_backlogaware": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "What-if score backlog-aware"
+                  }
+                },
+                "State": "Generated"
+              },
+              "table_measures.whatif_score_plan": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "What-if score plan"
+                  }
+                },
+                "State": "Generated"
+              },
+              "table_measures.whatif_verdict": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "What-if verdict"
+                  }
+                },
+                "State": "Generated"
+              }
+            },
+            "Language": "en-US",
+            "Version": "2.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "DataFolder",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"C:\\Users\\kurmi\\OneDrive\\Desktop\\4th year books\\heckathon\\northwind-onecase\\data\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]",
+        "kind": "m",
+        "lineageTag": "6f0c0c0b-4adb-5045-b9d9-a8138790e057"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "97c35e5b-397e-5c7f-baca-119b620aabb7",
+        "fromColumn": "region",
+        "fromTable": "complaint_360",
+        "toColumn": "region",
+        "toTable": "Regions"
+      },
+      {
+        "name": "9f5e6f73-157f-5971-8b27-2a915bbcccbf",
+        "fromColumn": "region",
+        "fromTable": "region_month",
+        "toColumn": "region",
+        "toTable": "Regions"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "complaint_360",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "complaint_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "59e4e941-58ed-50bf-a38e-48e47a3b4515",
+            "sourceColumn": "complaint_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "date_opened",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "lineageTag": "6d7b3d5f-0e9b-5a18-9761-d5d2cd79b987",
+            "sourceColumn": "date_opened",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "date_closed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "lineageTag": "24dece36-3cfe-5cc6-82aa-5936ed7d1136",
+            "sourceColumn": "date_closed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ce347d7a-45f8-57ef-aeff-a519571fada1",
+            "sourceColumn": "status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "channel",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "02a9abbb-a6ce-5260-84c2-69da5545c82d",
+            "sourceColumn": "channel",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e8089c24-e373-5551-a191-998c4eed3829",
+            "sourceColumn": "category",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "priority",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e2cf1aa4-f75b-5918-b1f0-4311f8233c04",
+            "sourceColumn": "priority",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "region",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f23ed18d-dd38-5b98-88f4-cf9865b4a263",
+            "sourceColumn": "region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "source_system",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "06836a2a-66a7-5721-8c5c-5a8507168051",
+            "sourceColumn": "source_system",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "transferred_between_systems",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e05e151e-de85-5fae-9e50-ea0d819d9fd9",
+            "sourceColumn": "transferred_between_systems",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sla_days",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f8097578-6575-5d79-a4c6-a75ce5358871",
+            "sourceColumn": "sla_days",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "days_to_close",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7b4ea9f1-4fb4-524b-b052-01d45fafd116",
+            "sourceColumn": "days_to_close",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sla_breach",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8da99cab-11c3-507e-8f9d-ca1c45f56fb7",
+            "sourceColumn": "sla_breach",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "reopened",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c695ceef-d82c-586b-a4b8-24e92cc8368a",
+            "sourceColumn": "reopened",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "resolution_action",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6a3f720d-b688-5d22-9c88-46c1bc81493c",
+            "sourceColumn": "resolution_action",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "resolvable_by_information_only",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "fd5869f4-19bd-576a-9082-a952c67aa4dc",
+            "sourceColumn": "resolvable_by_information_only",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "bill_correction_value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "447f3884-60ab-5f58-8bd1-55b79aeb5f38",
+            "sourceColumn": "bill_correction_value",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "account_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "df68762c-c151-52c0-bd44-ead0e6095a7a",
+            "sourceColumn": "account_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month_opened",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2d4e942c-42bc-5b41-84fc-cf473e889fab",
+            "sourceColumn": "month_opened",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month_closed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "384b056f-f1ee-5c14-9a94-6a5d2fa242d2",
+            "sourceColumn": "month_closed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "source_system_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7cbc155c-7613-5bb1-be18-6f7a486c6da6",
+            "sourceColumn": "source_system_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "source_system_year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3fa79e2e-f8a0-520c-aa87-20e413a7b85f",
+            "sourceColumn": "source_system_year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "source_integration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "aa9fc822-add4-544d-826d-36b68aa65d33",
+            "sourceColumn": "source_integration",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "source_system_notes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1bc11bae-2a20-54c1-96c5-9b56f6500743",
+            "sourceColumn": "source_system_notes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "region_accounts",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0c467202-37d8-5842-86c9-54c1478b4bec",
+            "sourceColumn": "region_accounts",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "estimated_read_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0%",
+            "lineageTag": "9a40f766-0d8a-5de0-b54f-d2177789470a",
+            "sourceColumn": "estimated_read_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "smart_meter_penetration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0%",
+            "lineageTag": "5ee0b604-af35-50ee-8b32-b0b6811dcea0",
+            "sourceColumn": "smart_meter_penetration",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "billing_exceptions_raised",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c5d7d836-9ec1-5f53-9b32-688973192a92",
+            "sourceColumn": "billing_exceptions_raised",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "region_systems",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "100f807b-8828-582b-bbb5-8edd8909088c",
+            "sourceColumn": "region_systems",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "agent_fte",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "552ea6e9-6298-5a05-b028-e8cb58dc6672",
+            "sourceColumn": "agent_fte",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "open_vacancies",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "fefd909f-08a7-5f69-9e02-ed9159267fd9",
+            "sourceColumn": "open_vacancies",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "attrition_rate_12m",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "61bf2474-f81d-56ed-8472-4bcaa59d005a",
+            "sourceColumn": "attrition_rate_12m",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "source_system_age_years",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "c2493c8b-c955-55b2-8ba7-cfaa96dc4049",
+            "sourceColumn": "source_system_age_years",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "category_group",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c34c5378-ed97-5a7e-bd80-b35144559260",
+            "sourceColumn": "category_group",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "estimate_driven",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b3fc3d9f-7bc8-5130-83ca-33b811dd7b5c",
+            "sourceColumn": "estimate_driven",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "smart_region",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e61a93b3-b09d-571f-94a5-1076672bbc7b",
+            "sourceColumn": "smart_region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "handling_unit_cost",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "28655a03-56ce-57c8-ba80-02e97c60b712",
+            "sourceColumn": "handling_unit_cost",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_open",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "04042870-0000-5242-96be-6771aebe8849",
+            "sourceColumn": "is_open",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Transferred?",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "IF ( complaint_360[transferred_between_systems] = 1, \"Transferred\", \"Not transferred\" )",
+            "isDataTypeInferred": true,
+            "lineageTag": "a5a58f9d-dd8f-53a9-ac2a-7ab4d3fb1b40",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Intake system",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "complaint_360[source_system_name] & \" (\" & complaint_360[source_system] & \")\"",
+            "isDataTypeInferred": true,
+            "lineageTag": "1a9c1191-793b-5663-b393-4b0d45149a1c",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "FORMAT ( complaint_360[date_opened], \"yyyy\" ) & \" Q\" & FORMAT ( complaint_360[date_opened], \"q\" )",
+            "isDataTypeInferred": true,
+            "lineageTag": "3078982b-22a7-531d-8a21-74fdabfbee51",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "46def94d-6bde-52d8-9592-a2b763feb86a",
+        "partitions": [
+          {
+            "name": "complaint_360",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\exports\\complaint_360.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"complaint_id\", type text}, {\"date_opened\", type date}, {\"date_closed\", type date}, {\"status\", type text}, {\"channel\", type text}, {\"category\", type text}, {\"priority\", type text}, {\"region\", type text}, {\"source_system\", type text}, {\"transferred_between_systems\", Int64.Type}, {\"sla_days\", Int64.Type}, {\"days_to_close\", type number}, {\"sla_breach\", Int64.Type}, {\"reopened\", Int64.Type}, {\"resolution_action\", type text}, {\"resolvable_by_information_only\", type number}, {\"bill_correction_value\", type number}, {\"account_id\", type text}, {\"month_opened\", type text}, {\"month_closed\", type text}, {\"source_system_name\", type text}, {\"source_system_year\", Int64.Type}, {\"source_integration\", type text}, {\"source_system_notes\", type text}, {\"region_accounts\", Int64.Type}, {\"estimated_read_rate\", type number}, {\"smart_meter_penetration\", type number}, {\"billing_exceptions_raised\", Int64.Type}, {\"region_systems\", type text}, {\"agent_fte\", Int64.Type}, {\"open_vacancies\", Int64.Type}, {\"attrition_rate_12m\", type number}, {\"source_system_age_years\", Int64.Type}, {\"category_group\", type text}, {\"estimate_driven\", Int64.Type}, {\"smart_region\", Int64.Type}, {\"handling_unit_cost\", type number}, {\"is_open\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "region_month",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "region",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7a9d8673-f700-5880-ae28-c33234e47fcb",
+            "sourceColumn": "region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ba738a8d-a6fe-5cf9-b7b6-31841dc05709",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "complaints_opened",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9beb0124-8b2c-5183-aa37-250d339cc3fe",
+            "sourceColumn": "complaints_opened",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "transfers",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "32aba90e-3576-5d4e-b866-682bbbaf78b5",
+            "sourceColumn": "transfers",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "breaches",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e1b4b6fd-2e3d-5f71-9ecd-b772ce4b3606",
+            "sourceColumn": "breaches",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "reopened",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b0fa0ebc-67b0-5955-a00c-6d12f5b65533",
+            "sourceColumn": "reopened",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "complaints_closed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "6ced714e-f271-58c6-94f0-c0fe6fe47933",
+            "sourceColumn": "complaints_closed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_days_to_close",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "2d2777fa-c122-59cb-b815-0efcdc720db2",
+            "sourceColumn": "avg_days_to_close",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "estimated_read_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0%",
+            "lineageTag": "c84a3630-af14-5e90-9cfb-86dc11a8af94",
+            "sourceColumn": "estimated_read_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "smart_meter_penetration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0%",
+            "lineageTag": "17aeb4b6-c7e6-59e0-acc4-a7de300af2d1",
+            "sourceColumn": "smart_meter_penetration",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "billing_exceptions_raised",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3e6ba5f6-69b1-541d-ab8f-1242b1a8b35f",
+            "sourceColumn": "billing_exceptions_raised",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "agent_fte",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "575f560e-f4f7-5564-915e-b1bb63659b39",
+            "sourceColumn": "agent_fte",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "transfer_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7f133b36-0883-5d8b-8466-c8f173d3f674",
+            "sourceColumn": "transfer_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "breach_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a2897a9a-72d7-598d-a192-eda47a801294",
+            "sourceColumn": "breach_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Month start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "expression": "DATE ( VALUE ( LEFT ( region_month[month], 4 ) ), VALUE ( RIGHT ( region_month[month], 2 ) ), 1 )",
+            "formatString": "mmm yyyy",
+            "isDataTypeInferred": true,
+            "lineageTag": "7630db70-bc4f-55ca-b150-2267b675fabb",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "0915a84c-0698-5e64-b332-e7ecf513cc37",
+        "partitions": [
+          {
+            "name": "region_month",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\exports\\region_month.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"region\", type text}, {\"month\", type text}, {\"complaints_opened\", Int64.Type}, {\"transfers\", Int64.Type}, {\"breaches\", Int64.Type}, {\"reopened\", Int64.Type}, {\"complaints_closed\", Int64.Type}, {\"avg_days_to_close\", type number}, {\"estimated_read_rate\", type number}, {\"smart_meter_penetration\", type number}, {\"billing_exceptions_raised\", Int64.Type}, {\"agent_fte\", Int64.Type}, {\"transfer_rate\", type number}, {\"breach_rate\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "backlog_month",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "77e04f6f-98b6-56ec-af31-05eca02b5722",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "complaints_opened",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "44d655cb-f7c6-5500-9f67-c031ce79811c",
+            "sourceColumn": "complaints_opened",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "complaints_closed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a3e761d6-a7ce-5c30-93f1-4bc8c0380d20",
+            "sourceColumn": "complaints_closed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_days_to_close",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7c1cdfd9-1355-5347-9159-f4eef33814ac",
+            "sourceColumn": "avg_days_to_close",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "first_contact_resolution_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "65cae52c-dfae-57d6-9062-b5a8b8ea5467",
+            "sourceColumn": "first_contact_resolution_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "inbound_calls",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "31bde7cc-fbb4-5ba8-bf44-2e23618ad54d",
+            "sourceColumn": "inbound_calls",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cost_to_serve_per_account",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "495a67e5-f49d-5a56-a0a6-0634e2cfbbd8",
+            "sourceColumn": "cost_to_serve_per_account",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "regulator_satisfaction_score_of_5",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b826a294-bee1-5ec6-bf0b-381fe84567af",
+            "sourceColumn": "regulator_satisfaction_score_of_5",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "backlog_start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "98a9ec39-cd50-5c4c-b9f0-dbeb8ba7f097",
+            "sourceColumn": "backlog_start",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "backlog_end",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "40c37750-4b05-51a8-afe8-37542993cb88",
+            "sourceColumn": "backlog_end",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_days_not_transferred",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "972392a1-68ae-58fa-8f48-2284d084da5e",
+            "sourceColumn": "avg_days_not_transferred",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_days_transferred",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "edf64690-4d1b-5950-8ed2-6f6282c175ae",
+            "sourceColumn": "avg_days_transferred",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "backlog_avg",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "65c9fba6-7255-5e01-bbff-9e9bbeed0a10",
+            "sourceColumn": "backlog_avg",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Month start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "expression": "DATE ( VALUE ( LEFT ( backlog_month[month], 4 ) ), VALUE ( RIGHT ( backlog_month[month], 2 ) ), 1 )",
+            "formatString": "mmm yyyy",
+            "isDataTypeInferred": true,
+            "lineageTag": "0df008af-528a-5a35-97ee-557657e0c792",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "012d9a96-56cb-5555-b862-c216ca72b807",
+        "partitions": [
+          {
+            "name": "backlog_month",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\exports\\backlog_month.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"month\", type text}, {\"complaints_opened\", Int64.Type}, {\"complaints_closed\", Int64.Type}, {\"avg_days_to_close\", type number}, {\"first_contact_resolution_rate\", type number}, {\"inbound_calls\", Int64.Type}, {\"cost_to_serve_per_account\", type number}, {\"regulator_satisfaction_score_of_5\", type number}, {\"backlog_start\", Int64.Type}, {\"backlog_end\", Int64.Type}, {\"avg_days_not_transferred\", type number}, {\"avg_days_transferred\", type number}, {\"backlog_avg\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "scenarios",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "scenario_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1d32c29c-4f66-5e08-93ef-7da25e83db1c",
+            "sourceColumn": "scenario_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "scenario_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6c23e6f6-bde3-5c16-8618-1db286481b6b",
+            "sourceColumn": "scenario_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month_index",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0db91a42-e492-5f6d-9c57-01c27902d0b3",
+            "sourceColumn": "month_index",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "682b2a4b-4424-575f-a427-5a57ea775298",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ramp",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d9380990-06bd-59b5-bea5-a55e0ba449d4",
+            "sourceColumn": "ramp",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "intake",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b3073e27-0342-5cf6-80d4-bd0063c69e17",
+            "sourceColumn": "intake",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "first_contact_closed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "410ba8a3-6cdf-5f33-85bf-99e5ef997cf2",
+            "sourceColumn": "first_contact_closed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "queue_intake",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "fbf07ef5-3b92-5e99-ab42-47195dc17f71",
+            "sourceColumn": "queue_intake",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "capacity",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "93e2ffd6-c6b0-52e3-a01f-adc277d51e65",
+            "sourceColumn": "capacity",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "closures",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "56c057c7-691d-5bc3-b6ad-050b1c968282",
+            "sourceColumn": "closures",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "closed_total",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b7e0b109-e9e0-5f95-8cfd-88b61c3b4013",
+            "sourceColumn": "closed_total",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "backlog",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3327699d-ad12-54a0-a38a-6170139be9a4",
+            "sourceColumn": "backlog",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "working_stock",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e47534f5-6c98-5a11-a3b3-0bebb44e1c74",
+            "sourceColumn": "working_stock",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_days_static",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "24a2b75f-8b59-5273-8993-200408941849",
+            "sourceColumn": "avg_days_static",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "score_static",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "2fdae2cb-4777-5093-9a0f-8c4eff23c212",
+            "sourceColumn": "score_static",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_days_queue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "91b7cca3-2934-557e-afbd-8447fa68c529",
+            "sourceColumn": "avg_days_queue",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "score_queue",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "dbbcaca7-9a4e-500e-8db1-7abf9ed0b972",
+            "sourceColumn": "score_queue",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_days",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e9d90def-5afa-5d80-8f91-ab986cea3b69",
+            "sourceColumn": "avg_days",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "score",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b0e23b01-dac5-546a-82f3-c2196da2e518",
+            "sourceColumn": "score",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "handling_cost",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "89bf0e48-410c-51d5-ac13-e565dfa2d9ab",
+            "sourceColumn": "handling_cost",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "agents_cost",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9b10fa0e-cb03-56b3-9948-2a43a0d30175",
+            "sourceColumn": "agents_cost",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "target_met",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9a1a7aed-72af-5c79-8b75-35b5b57be10a",
+            "sourceColumn": "target_met",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "handling_saving",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "28f35c0b-34e2-520d-b6af-61f46ac25480",
+            "sourceColumn": "handling_saving",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Scenario",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "SWITCH ( scenarios[scenario_id], \"everything_max\", \"Everything at maximum\", \"recommended\", \"Recommended package\", \"routing_fix\", \"Routing fix only\", \"client_ai_plan\", \"Client's AI plan\", \"status_quo\", \"Status quo\", scenarios[scenario_name] )",
+            "isDataTypeInferred": true,
+            "lineageTag": "5131babb-ff89-588f-a410-d4d1d0d0c1c3",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "expression": "DATE ( VALUE ( LEFT ( scenarios[month], 4 ) ), VALUE ( RIGHT ( scenarios[month], 2 ) ), 1 )",
+            "formatString": "mmm yyyy",
+            "isDataTypeInferred": true,
+            "lineageTag": "57a2b0d3-78ee-5f28-85f7-54a9f86d6f3d",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "ccff82d8-c5aa-5eec-99f8-aa8a7fd4809e",
+        "partitions": [
+          {
+            "name": "scenarios",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\exports\\scenarios.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"scenario_id\", type text}, {\"scenario_name\", type text}, {\"month_index\", Int64.Type}, {\"month\", type text}, {\"ramp\", type number}, {\"intake\", type number}, {\"first_contact_closed\", type number}, {\"queue_intake\", type number}, {\"capacity\", type number}, {\"closures\", type number}, {\"closed_total\", type number}, {\"backlog\", type number}, {\"working_stock\", type number}, {\"avg_days_static\", type number}, {\"score_static\", type number}, {\"avg_days_queue\", type number}, {\"score_queue\", type number}, {\"avg_days\", type number}, {\"score\", type number}, {\"handling_cost\", type number}, {\"agents_cost\", type number}, {\"target_met\", type text}, {\"handling_saving\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "lever_grid",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "transfers_removed",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0%",
+            "lineageTag": "95c913f1-5223-5c4a-9ad5-9dc5c3c2ba00",
+            "sourceColumn": "transfers_removed",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "info_only_first_contact",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0%",
+            "lineageTag": "b6f1d173-aaef-53ed-9ebe-e51ec7efff9f",
+            "sourceColumn": "info_only_first_contact",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "estimated_read_reduction",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0%",
+            "lineageTag": "30cb4719-461b-553f-be49-5730648e45d5",
+            "sourceColumn": "estimated_read_reduction",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "calderfield_agents_restored",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7d30b8f4-9dd8-57c0-b2e1-a910328659de",
+            "sourceColumn": "calderfield_agents_restored",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "avg_days_month12",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "05671057-d93e-541f-a19e-19ef33d9fa9a",
+            "sourceColumn": "avg_days_month12",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "score_month12",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a897d4ba-8692-517f-8f1e-b79a639aa66b",
+            "sourceColumn": "score_month12",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "target_met",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d07621f9-df60-5ff3-acee-e17b90a6d501",
+            "sourceColumn": "target_met",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "first_month_target_met",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f9926700-a54a-520d-82b9-37e2fd9a120c",
+            "sourceColumn": "first_month_target_met",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "score_static_month12",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "61ea5138-0b47-57ed-b0e2-7e81deedade3",
+            "sourceColumn": "score_static_month12",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "score_queue_month12",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c1be3098-6858-5434-aecc-6494b41d6c15",
+            "sourceColumn": "score_queue_month12",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "backlog_month12",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1731f94f-6212-5138-9cb9-b0c164e7de55",
+            "sourceColumn": "backlog_month12",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "annual_saving_y1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f8d61bf6-3b8a-506a-81c1-a257801f5ca6",
+            "sourceColumn": "annual_saving_y1",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "annual_saving_full_effect",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "73114209-d292-5e2f-8c42-122f98cd1423",
+            "sourceColumn": "annual_saving_full_effect",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "74a8b421-467f-556a-bc60-d5f4f6014cec",
+        "partitions": [
+          {
+            "name": "lever_grid",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\exports\\lever_grid.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"transfers_removed\", type number}, {\"info_only_first_contact\", type number}, {\"estimated_read_reduction\", type number}, {\"calderfield_agents_restored\", Int64.Type}, {\"avg_days_month12\", type number}, {\"score_month12\", type number}, {\"target_met\", type text}, {\"first_month_target_met\", type number}, {\"score_static_month12\", type number}, {\"score_queue_month12\", type number}, {\"backlog_month12\", type number}, {\"annual_saving_y1\", type number}, {\"annual_saving_full_effect\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ai_pilot",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2a9eb900-7e78-5fdc-bd14-5c68e61700f9",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "assistant_sessions",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8630fbf0-a05d-53b4-b7eb-32b7a1041fc0",
+            "sourceColumn": "assistant_sessions",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "fully_contained_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7f2f783e-c663-5fe0-aca8-8da7f05676fb",
+            "sourceColumn": "fully_contained_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "escalated_to_agent_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "aa3fa8da-0f6b-595a-9e48-de23b46cf9b7",
+            "sourceColumn": "escalated_to_agent_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "abandoned_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "bac623a5-8b24-5201-8853-5eca50a0c1a9",
+            "sourceColumn": "abandoned_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "repeat_contact_within_7_days_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "13585617-5e88-599a-b75b-bd35b7cb0b95",
+            "sourceColumn": "repeat_contact_within_7_days_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "assistant_csat_of_5",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4fcc0958-89e7-5ab3-8a31-10c7ddc0091d",
+            "sourceColumn": "assistant_csat_of_5",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "complaint_raised_after_session_rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "01614a2f-c31f-5071-834a-51568f91f9e4",
+            "sourceColumn": "complaint_raised_after_session_rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Month start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "expression": "DATE ( VALUE ( LEFT ( ai_pilot[month], 4 ) ), VALUE ( RIGHT ( ai_pilot[month], 2 ) ), 1 )",
+            "formatString": "mmm yyyy",
+            "isDataTypeInferred": true,
+            "lineageTag": "85ae97e2-37c4-537c-b846-6da50a85ee43",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "4031d1e5-bbbe-5bfd-8b0e-1a41a2c3f984",
+        "partitions": [
+          {
+            "name": "ai_pilot",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\raw\\northwind_ai_pilot_2025.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"month\", type text}, {\"assistant_sessions\", Int64.Type}, {\"fully_contained_rate\", type number}, {\"escalated_to_agent_rate\", type number}, {\"abandoned_rate\", type number}, {\"repeat_contact_within_7_days_rate\", type number}, {\"assistant_csat_of_5\", type number}, {\"complaint_raised_after_session_rate\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Regions",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "region",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dce49921-404d-5e2f-ab2e-b32d7df3c14c",
+            "sourceColumn": "region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Meters",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d32aab00-db14-5a80-aeeb-226b78988fed",
+            "sourceColumn": "Meters",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "f3d84182-6326-546f-838d-1f91515d612e",
+        "partitions": [
+          {
+            "name": "Regions",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #table(type table [region = text, Meters = text], {{\"Ashford\", \"Smart-meter region\"}, {\"Barrowdale\", \"No smart meters\"}, {\"Calderfield\", \"Smart-meter region\"}, {\"Dunmoor\", \"No smart meters\"}, {\"Eastmarch\", \"Smart-meter region\"}, {\"Fenwick\", \"Smart-meter region\"}})",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "_Measures",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "2e3d277e-1144-58ba-b4e6-c74edbac33d0",
+            "sourceColumn": "Column1",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "14d1f3b5-52de-525a-ad9a-4970e70d5f30",
+        "measures": [
+          {
+            "name": "Complaints",
+            "displayFolder": "A Volume",
+            "expression": "COUNTROWS ( complaint_360 )",
+            "formatString": "#,0",
+            "lineageTag": "cf88266b-2933-52bc-bfa9-037eb3313c47"
+          },
+          {
+            "name": "Open complaints",
+            "displayFolder": "A Volume",
+            "expression": "CALCULATE ( [Complaints], complaint_360[is_open] = 1 )",
+            "formatString": "#,0",
+            "lineageTag": "b0d2e7a4-17a4-5763-9d14-a1a465735e10"
+          },
+          {
+            "name": "Transferred",
+            "displayFolder": "A Volume",
+            "expression": "CALCULATE ( [Complaints], complaint_360[transferred_between_systems] = 1 )",
+            "formatString": "#,0",
+            "lineageTag": "a2bc10de-89ab-5ed6-820c-74f661cc5c5a"
+          },
+          {
+            "name": "Transfer rate",
+            "displayFolder": "A Volume",
+            "expression": "DIVIDE ( [Transferred] + 0, [Complaints] )",
+            "formatString": "0.0%",
+            "lineageTag": "f58e2148-a972-59da-95e9-1d68f2c8230f"
+          },
+          {
+            "name": "Avg days to close",
+            "displayFolder": "B Transfers",
+            "expression": "AVERAGE ( complaint_360[days_to_close] )",
+            "formatString": "0.0",
+            "lineageTag": "81b1510b-46cc-5c35-a1f8-08ebd5791eaa"
+          },
+          {
+            "name": "Avg days transferred",
+            "displayFolder": "B Transfers",
+            "expression": "CALCULATE ( [Avg days to close], complaint_360[transferred_between_systems] = 1 )",
+            "formatString": "0.0",
+            "lineageTag": "fd47e16e-8992-54e5-94a4-26f5ae4619e4"
+          },
+          {
+            "name": "Avg days not transferred",
+            "displayFolder": "B Transfers",
+            "expression": "CALCULATE ( [Avg days to close], complaint_360[transferred_between_systems] = 0 )",
+            "formatString": "0.0",
+            "lineageTag": "43e50aa3-973d-5828-9d4c-45308ea5f826"
+          },
+          {
+            "name": "Days added by a transfer",
+            "displayFolder": "B Transfers",
+            "expression": "[Avg days transferred] - [Avg days not transferred]",
+            "formatString": "0.0",
+            "lineageTag": "14a1bdd4-80ad-5ecd-9583-3006330d5dc0"
+          },
+          {
+            "name": "SLA breach rate",
+            "displayFolder": "B Transfers",
+            "expression": "AVERAGE ( complaint_360[sla_breach] )",
+            "formatString": "0.0%",
+            "lineageTag": "afefd4b6-1cdd-5b6a-ace6-cad04f679563"
+          },
+          {
+            "name": "Reopen rate",
+            "displayFolder": "B Transfers",
+            "expression": "AVERAGE ( complaint_360[reopened] )",
+            "formatString": "0.0%",
+            "lineageTag": "6be19774-37d2-5128-800f-a302d1a7d92a"
+          },
+          {
+            "name": "Avg handling cost",
+            "displayFolder": "B Transfers",
+            "expression": "AVERAGE ( complaint_360[handling_unit_cost] )",
+            "formatString": "$#,0",
+            "lineageTag": "34ca9f68-5c0f-5bbb-b120-02b23706e3c1"
+          },
+          {
+            "name": "Handling cost",
+            "displayFolder": "B Transfers",
+            "expression": "SUM ( complaint_360[handling_unit_cost] ) / 1000",
+            "formatString": "$#,0\"k\"",
+            "lineageTag": "e83b1a9c-d660-5c2d-adec-8017efc21707"
+          },
+          {
+            "name": "CaseTrack note",
+            "displayFolder": "B Transfers",
+            "expression": "CALCULATE ( SELECTEDVALUE ( complaint_360[source_system_notes] ), complaint_360[source_system] = \"SYS-04\" )",
+            "lineageTag": "80b0bee5-3cfa-50bc-b7c3-b3518538df86"
+          },
+          {
+            "name": "Billing and metering share",
+            "displayFolder": "C Complaints",
+            "expression": "DIVIDE ( CALCULATE ( [Complaints], complaint_360[category_group] IN { \"Billing\", \"Metering\" } ), [Complaints] )",
+            "formatString": "0%",
+            "lineageTag": "5b886c73-5e0c-57a4-b075-13675a84fca9"
+          },
+          {
+            "name": "Billing fixed share",
+            "displayFolder": "C Complaints",
+            "expression": [
+              "VAR billing = CALCULATE ( [Complaints], complaint_360[category_group] = \"Billing\" )",
+              "VAR fixed = CALCULATE ( [Complaints], complaint_360[category_group] = \"Billing\", complaint_360[resolution_action] IN { \"Bill corrected and re-issued\", \"Refund or credit applied\" } )",
+              "RETURN DIVIDE ( fixed, billing )"
+            ],
+            "formatString": "0%",
+            "lineageTag": "9c7a8b59-691a-5e6f-8897-7cab6e66c83f"
+          },
+          {
+            "name": "Info-only complaints",
+            "displayFolder": "C Complaints",
+            "expression": "CALCULATE ( [Complaints], complaint_360[resolvable_by_information_only] = 1 )",
+            "formatString": "#,0",
+            "lineageTag": "5beeb1f1-1fcc-5a44-8bea-4540c0e20134"
+          },
+          {
+            "name": "Info-only share",
+            "displayFolder": "C Complaints",
+            "expression": "DIVIDE ( [Info-only complaints], [Complaints] )",
+            "formatString": "0.0%",
+            "lineageTag": "e8decb12-1d5a-5024-8284-84a6b492f63e"
+          },
+          {
+            "name": "Avg days info-only",
+            "displayFolder": "C Complaints",
+            "expression": "CALCULATE ( [Avg days to close], complaint_360[resolvable_by_information_only] = 1 )",
+            "formatString": "0.0",
+            "lineageTag": "aebe8dfd-cc5b-56ad-9485-64866abf8e68"
+          },
+          {
+            "name": "Transfer rate info-only",
+            "displayFolder": "C Complaints",
+            "expression": "CALCULATE ( [Transfer rate], complaint_360[resolvable_by_information_only] = 1 )",
+            "formatString": "0.0%",
+            "lineageTag": "41baa383-381c-5d9e-8c6d-0fe5d4b69f71"
+          },
+          {
+            "name": "Regulator score",
+            "displayFolder": "D Score",
+            "expression": "AVERAGE ( backlog_month[regulator_satisfaction_score_of_5] )",
+            "formatString": "0.00",
+            "lineageTag": "43d2e7e2-bd58-5252-80cf-07992b2bac7f"
+          },
+          {
+            "name": "Avg days (KPI)",
+            "displayFolder": "D Score",
+            "expression": "AVERAGE ( backlog_month[avg_days_to_close] )",
+            "formatString": "0.0",
+            "lineageTag": "c7714c26-0a0e-5517-9101-c99f491f477e"
+          },
+          {
+            "name": "Open backlog",
+            "displayFolder": "D Score",
+            "expression": "AVERAGE ( backlog_month[backlog_end] )",
+            "formatString": "#,0",
+            "lineageTag": "04cf0012-4064-57ac-94cf-9f18a0a963cb"
+          },
+          {
+            "name": "Score today",
+            "displayFolder": "D Score",
+            "expression": "CALCULATE ( [Regulator score], TOPN ( 1, ALL ( backlog_month[month] ), backlog_month[month], DESC ) )",
+            "formatString": "0.00",
+            "lineageTag": "4657b04a-9bbe-5456-94e3-7691ead7da2d"
+          },
+          {
+            "name": "Score first month",
+            "displayFolder": "D Score",
+            "expression": "CALCULATE ( [Regulator score], TOPN ( 1, ALL ( backlog_month[month] ), backlog_month[month], ASC ) )",
+            "formatString": "0.00",
+            "lineageTag": "f953e677-0641-508d-a05f-e186af60a8ce"
+          },
+          {
+            "name": "Days today",
+            "displayFolder": "D Score",
+            "expression": "CALCULATE ( [Avg days (KPI)], TOPN ( 1, ALL ( backlog_month[month] ), backlog_month[month], DESC ) )",
+            "formatString": "0.0",
+            "lineageTag": "1718ff83-5bf9-57d4-a46b-42dc75ad5ec7"
+          },
+          {
+            "name": "Score slope per day",
+            "displayFolder": "D Score",
+            "expression": [
+              "VAR t = ALL ( backlog_month )",
+              "VAR mx = AVERAGEX ( t, backlog_month[avg_days_to_close] )",
+              "VAR my = AVERAGEX ( t, backlog_month[regulator_satisfaction_score_of_5] )",
+              "VAR sxy = SUMX ( t, ( backlog_month[avg_days_to_close] - mx ) * ( backlog_month[regulator_satisfaction_score_of_5] - my ) )",
+              "VAR sxx = SUMX ( t, ( backlog_month[avg_days_to_close] - mx ) ^ 2 )",
+              "VAR syy = SUMX ( t, ( backlog_month[regulator_satisfaction_score_of_5] - my ) ^ 2 )",
+              "RETURN DIVIDE ( sxy, sxx )"
+            ],
+            "formatString": "0.0000",
+            "lineageTag": "9ddd90a7-46de-5de7-819d-41e78e3de92a"
+          },
+          {
+            "name": "Score intercept",
+            "displayFolder": "D Score",
+            "expression": [
+              "VAR t = ALL ( backlog_month )",
+              "RETURN AVERAGEX ( t, backlog_month[regulator_satisfaction_score_of_5] ) - [Score slope per day] * AVERAGEX ( t, backlog_month[avg_days_to_close] )"
+            ],
+            "formatString": "0.000",
+            "lineageTag": "29f824fb-654d-532a-a3c8-ab2edca104dc"
+          },
+          {
+            "name": "Score fit r",
+            "displayFolder": "D Score",
+            "expression": [
+              "VAR t = ALL ( backlog_month )",
+              "VAR mx = AVERAGEX ( t, backlog_month[avg_days_to_close] )",
+              "VAR my = AVERAGEX ( t, backlog_month[regulator_satisfaction_score_of_5] )",
+              "VAR sxy = SUMX ( t, ( backlog_month[avg_days_to_close] - mx ) * ( backlog_month[regulator_satisfaction_score_of_5] - my ) )",
+              "VAR sxx = SUMX ( t, ( backlog_month[avg_days_to_close] - mx ) ^ 2 )",
+              "VAR syy = SUMX ( t, ( backlog_month[regulator_satisfaction_score_of_5] - my ) ^ 2 )",
+              "RETURN DIVIDE ( sxy, SQRT ( sxx * syy ) )"
+            ],
+            "formatString": "0.00",
+            "lineageTag": "703af576-f67d-5680-9246-bf1913e506a8"
+          },
+          {
+            "name": "Days needed for 4.0",
+            "displayFolder": "D Score",
+            "expression": "DIVIDE ( 4 - [Score intercept], [Score slope per day] )",
+            "formatString": "0.0",
+            "lineageTag": "670699ae-dbb1-5343-9846-c5e20417f323"
+          },
+          {
+            "name": "Target 4.0",
+            "displayFolder": "D Score",
+            "expression": "IF ( NOT ISBLANK ( [Regulator score] ), 4 )",
+            "formatString": "0.0",
+            "lineageTag": "fb909005-abed-5b35-8088-937306a5b2e2"
+          },
+          {
+            "name": "Needed for 4.0",
+            "displayFolder": "D Score",
+            "expression": "IF ( NOT ISBLANK ( [Avg days (KPI)] ), [Days needed for 4.0] )",
+            "formatString": "0.0",
+            "lineageTag": "e37d6010-1c4e-5ac4-a0c2-f71053f3bc43"
+          },
+          {
+            "name": "Smart-meter penetration",
+            "displayFolder": "E Regions",
+            "expression": "AVERAGE ( region_month[smart_meter_penetration] )",
+            "formatString": "0%",
+            "lineageTag": "673b77cb-f648-594c-8014-cf281a42ee76"
+          },
+          {
+            "name": "Estimated read rate",
+            "displayFolder": "E Regions",
+            "expression": "AVERAGE ( region_month[estimated_read_rate] )",
+            "formatString": "0%",
+            "lineageTag": "6b4e77ac-fcce-5e27-86b9-e1e39a853c27"
+          },
+          {
+            "name": "Smart meters (smart regions)",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Smart-meter penetration], Regions[Meters] = \"Smart-meter region\" )",
+            "formatString": "0%",
+            "lineageTag": "2404d33e-e7c4-5d87-90e2-706e4f492490"
+          },
+          {
+            "name": "Estimated bills (smart regions)",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Estimated read rate], Regions[Meters] = \"Smart-meter region\" )",
+            "formatString": "0%",
+            "lineageTag": "3ac78fc4-4cae-54eb-86ad-bf903109b816"
+          },
+          {
+            "name": "Estimated bills now (smart regions)",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Estimated bills (smart regions)], TOPN ( 1, ALL ( region_month[month] ), region_month[month], DESC ) )",
+            "formatString": "0%",
+            "lineageTag": "5a0e2899-d5b1-5168-897a-bc2d43ad7d7f"
+          },
+          {
+            "name": "Estimated read rate latest",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Estimated read rate], TOPN ( 1, ALL ( region_month[month] ), region_month[month], DESC ) )",
+            "formatString": "0%",
+            "lineageTag": "696af04b-c3c3-5552-ba1e-f08cafab0505"
+          },
+          {
+            "name": "Agents",
+            "displayFolder": "E Regions",
+            "expression": "SUM ( region_month[agent_fte] )",
+            "formatString": "#,0",
+            "lineageTag": "df271ea6-e145-5df0-b978-2999363d6cac"
+          },
+          {
+            "name": "Agents first month",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Agents], TOPN ( 1, ALL ( region_month[month] ), region_month[month], ASC ) )",
+            "formatString": "#,0",
+            "lineageTag": "0eae7b16-a31f-5bbd-9533-ebe30ba00268"
+          },
+          {
+            "name": "Agents last month",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Agents], TOPN ( 1, ALL ( region_month[month] ), region_month[month], DESC ) )",
+            "formatString": "#,0",
+            "lineageTag": "867faa24-e049-5de0-bc71-ac08d81bd96e"
+          },
+          {
+            "name": "Complaints since Mar 2026",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Complaints], complaint_360[date_opened] >= DATE ( 2026, 3, 1 ) )",
+            "formatString": "#,0",
+            "lineageTag": "d165f0bf-4d94-56de-9321-c6ac8bef70aa"
+          },
+          {
+            "name": "Avg days since Mar 2026",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Avg days to close], complaint_360[date_opened] >= DATE ( 2026, 3, 1 ) )",
+            "formatString": "0.0",
+            "lineageTag": "9e8323a9-8f3e-5636-b55c-e5c682639231"
+          },
+          {
+            "name": "SLA breach since Mar 2026",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [SLA breach rate], complaint_360[date_opened] >= DATE ( 2026, 3, 1 ) )",
+            "formatString": "0.0%",
+            "lineageTag": "24a7d6b5-975b-54ca-a564-408e89789c16"
+          },
+          {
+            "name": "Transfer rate since Mar 2026",
+            "displayFolder": "E Regions",
+            "expression": "CALCULATE ( [Transfer rate], complaint_360[date_opened] >= DATE ( 2026, 3, 1 ) )",
+            "formatString": "0.0%",
+            "lineageTag": "7c3f89c3-3fc5-559b-9bef-85b309da699b"
+          },
+          {
+            "name": "Containment",
+            "displayFolder": "F AI pilot",
+            "expression": "AVERAGE ( ai_pilot[fully_contained_rate] )",
+            "formatString": "0.0%",
+            "lineageTag": "1761aace-854e-506e-bd52-752b3a47a236"
+          },
+          {
+            "name": "Repeat contact in 7 days",
+            "displayFolder": "F AI pilot",
+            "expression": "AVERAGE ( ai_pilot[repeat_contact_within_7_days_rate] )",
+            "formatString": "0.0%",
+            "lineageTag": "18ef0ba5-b701-529a-80f3-1422a5220135"
+          },
+          {
+            "name": "Complaint after session",
+            "displayFolder": "F AI pilot",
+            "expression": "AVERAGE ( ai_pilot[complaint_raised_after_session_rate] )",
+            "formatString": "0.0%",
+            "lineageTag": "9a1d3e81-7002-56cb-84e1-01d8be771a3d"
+          },
+          {
+            "name": "Assistant CSAT",
+            "displayFolder": "F AI pilot",
+            "expression": "AVERAGE ( ai_pilot[assistant_csat_of_5] )",
+            "formatString": "0.00",
+            "lineageTag": "bc7af0c0-d6b4-536e-a0d3-204daa52d7da"
+          },
+          {
+            "name": "Score plan method",
+            "displayFolder": "G Scenarios",
+            "expression": "AVERAGE ( scenarios[score_static] )",
+            "formatString": "0.00",
+            "lineageTag": "f6b4ae2d-e27b-5816-a329-bd6bd655a631"
+          },
+          {
+            "name": "Score backlog-aware",
+            "displayFolder": "G Scenarios",
+            "expression": "AVERAGE ( scenarios[score_queue] )",
+            "formatString": "0.00",
+            "lineageTag": "039d4523-bcca-50b6-8b3e-8e267680be7a"
+          },
+          {
+            "name": "Scenario backlog",
+            "displayFolder": "G Scenarios",
+            "expression": "AVERAGE ( scenarios[backlog] )",
+            "formatString": "#,0",
+            "lineageTag": "5ad10e75-82b3-5168-b9b1-798b5f529cf0"
+          },
+          {
+            "name": "Score month 12 plan",
+            "displayFolder": "G Scenarios",
+            "expression": "CALCULATE ( [Score plan method], scenarios[month_index] = 12 )",
+            "formatString": "0.00",
+            "lineageTag": "519e3fdc-14a6-5302-b238-503f40b0a347"
+          },
+          {
+            "name": "Score month 12 backlog-aware",
+            "displayFolder": "G Scenarios",
+            "expression": "CALCULATE ( [Score backlog-aware], scenarios[month_index] = 12 )",
+            "formatString": "0.00",
+            "lineageTag": "7f97c69b-dc11-52b8-9e61-96a9b365d2da"
+          },
+          {
+            "name": "Backlog month 12",
+            "displayFolder": "G Scenarios",
+            "expression": "CALCULATE ( [Scenario backlog], scenarios[month_index] = 12 )",
+            "formatString": "#,0",
+            "lineageTag": "8e8e4fba-8205-56f4-bdf8-d060621bc4a5"
+          },
+          {
+            "name": "Saving a year",
+            "displayFolder": "G Scenarios",
+            "expression": "CALCULATE ( SUM ( scenarios[handling_saving] ), scenarios[month_index] = 12 ) * 12 / 1000",
+            "formatString": "$#,0\"k\"",
+            "lineageTag": "f3da2bdd-4919-5dc1-941b-d86661dc9489"
+          },
+          {
+            "name": "Reaches 4.0 (plan)",
+            "displayFolder": "G Scenarios",
+            "expression": [
+              "VAR m = CALCULATE ( MIN ( scenarios[month_index] ), scenarios[score_static] >= 4 )",
+              "RETURN IF ( ISBLANK ( m ), \"Not reached\", \"Month \" & m )"
+            ],
+            "lineageTag": "03fc1ae5-961f-5d85-ab28-97ac0aa3c65a"
+          },
+          {
+            "name": "Reaches 4.0 (backlog-aware)",
+            "displayFolder": "G Scenarios",
+            "expression": [
+              "VAR m = CALCULATE ( MIN ( scenarios[month_index] ), scenarios[score_queue] >= 4 )",
+              "RETURN IF ( ISBLANK ( m ), \"Not reached\", \"Month \" & m )"
+            ],
+            "lineageTag": "53b72c04-75c7-5a88-9076-29c6ee2499f9"
+          },
+          {
+            "name": "Lever rows",
+            "displayFolder": "H What-if",
+            "expression": "COUNTROWS ( lever_grid )",
+            "formatString": "#,0",
+            "lineageTag": "06bf77b1-7882-5b49-923b-ae08407eb2b1"
+          },
+          {
+            "name": "What-if score plan",
+            "displayFolder": "H What-if",
+            "expression": "IF ( [Lever rows] = 1, SUM ( lever_grid[score_static_month12] ) )",
+            "formatString": "0.00",
+            "lineageTag": "380d20a1-b801-5855-bf39-558e87071744"
+          },
+          {
+            "name": "What-if score backlog-aware",
+            "displayFolder": "H What-if",
+            "expression": "IF ( [Lever rows] = 1, SUM ( lever_grid[score_queue_month12] ) )",
+            "formatString": "0.00",
+            "lineageTag": "3c72c24b-a41d-5bb5-be9e-e40ae3650da5"
+          },
+          {
+            "name": "What-if days",
+            "displayFolder": "H What-if",
+            "expression": "IF ( [Lever rows] = 1, SUM ( lever_grid[avg_days_month12] ) )",
+            "formatString": "0.0",
+            "lineageTag": "f9db2589-2649-53e8-a6d4-c2d4b4be8491"
+          },
+          {
+            "name": "What-if backlog",
+            "displayFolder": "H What-if",
+            "expression": "IF ( [Lever rows] = 1, SUM ( lever_grid[backlog_month12] ) )",
+            "formatString": "#,0",
+            "lineageTag": "87dd4b18-58c6-5907-8ecd-d5b64c108fc8"
+          },
+          {
+            "name": "What-if saving a year",
+            "displayFolder": "H What-if",
+            "expression": "IF ( [Lever rows] = 1, SUM ( lever_grid[annual_saving_full_effect] ) / 1000 )",
+            "formatString": "$#,0\"k\"",
+            "lineageTag": "ddde016e-94d4-574b-b076-119c33b9e08a"
+          },
+          {
+            "name": "What-if verdict",
+            "displayFolder": "H What-if",
+            "expression": [
+              "IF ( [Lever rows] <> 1, \"Pick one level on each of the four levers\",",
+              "    IF ( [What-if score plan] >= 4, \"4.0 reached, even on the plan method\",",
+              "        IF ( [What-if score backlog-aware] >= 4, \"4.0 only if the backlog clears\", \"4.0 not reached\" ) ) )"
+            ],
+            "lineageTag": "618a9b5a-715d-5dab-9f15-98ea8511293f"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Measures",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #table(type table [Column1 = text], {})",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
