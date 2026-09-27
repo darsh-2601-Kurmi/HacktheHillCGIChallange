@@ -97,3 +97,19 @@ details.table summary { cursor: pointer; font-size: .8rem; color: var(--muted); 
 table.data { border-collapse: collapse; width: 100%; font-size: .8rem; margin-top: 6px; font-variant-numeric: tabular-nums; }
 table.data th, table.data td { text-align: right; padding: 3px 6px; border-bottom: 1px solid var(--rule-2); }
 table.data th:first-child, table.data td:first-child { text-align: left; }
+
+/* ---------- small screens: the top bar wraps into rows instead of pushing the page sideways ---------- */
+@media (max-width: 1100px) { .brand small { display: none; } }
+@media (max-width: 900px) {
+  .bar { flex-wrap: wrap; gap: 8px 12px; padding: 10px 14px; }
+  .bar nav { order: 5; flex: 1 0 100%; margin-left: 0; overflow-x: auto; scrollbar-width: none; }
+  .bar nav::-webkit-scrollbar { display: none; }
+  .bar nav a { white-space: nowrap; }
+}
+@media (max-width: 600px) {
+  .brand { font-size: 1.15rem; }
+  .plate { font-size: .66rem; padding: 4px 7px; letter-spacing: .06em; }
+  .bar .seg { order: 6; flex: 1 1 auto; display: flex; }
+  .bar .seg button { flex: 1; padding: 7px 10px; }
+  .bar #reset { order: 7; }
+}

@@ -23,6 +23,7 @@
   input[type=range] { width: 100%; accent-color: var(--action); height: 28px; }
   .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
   @media (max-width: 1200px) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 700px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .wrap { padding: 10px; gap: 10px; } }
   .tile { padding: 12px 14px; }
   .tile .label { font-size: .8rem; color: var(--ink-2); }
   .tile .value { font-family: var(--display); font-weight: 700; font-size: 2rem; line-height: 1.1; margin-top: 2px; }

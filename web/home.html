@@ -50,7 +50,7 @@
   .fact b { display: block; font-family: var(--display); font-weight: 600; font-size: 2.1rem; line-height: 1; white-space: nowrap; }
   .fact span { display: block; font-size: .85rem; color: var(--ink-2); margin-top: 6px; max-width: 19ch; }
 
-  /* the two services: a tap filling a glass, a bulb switching on. Plain SVG + CSS, one 8 s cycle */
+  /* the two services: a tap filling a glass (8 s cycle), a bulb fading up and down (2.6 s). Plain SVG + CSS */
   .art { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-self: center; }
   .tile { background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)); border: 1px solid var(--line);
     border-radius: 18px; padding: 22px 22px 20px; display: flex; flex-direction: column; }
@@ -73,16 +73,15 @@
   @keyframes rise { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .8; } 100% { transform: translateY(-70px); opacity: 0; } }
   @keyframes drip { 0%, 68% { transform: translateY(0); opacity: 0; } 70% { opacity: 1; } 78% { transform: translateY(58px); opacity: 0; } 100% { opacity: 0; } }
 
-  /* electricity: switch on (a soft ramp, no flashing), glow gently, switch off briefly, repeat */
-  .glow { animation: glow 8s ease-in-out infinite; }
-  .lit { animation: lit 8s ease-in-out infinite; }
-  .rays { animation: rays 8s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
-  .filament { animation: filament 8s ease-in-out infinite; }
-  @keyframes glow { 0%, 6% { opacity: 0; } 14% { opacity: .9; } 50% { opacity: .65; } 86% { opacity: .9; } 94%, 100% { opacity: 0; } }
-  @keyframes lit { 0%, 6% { fill-opacity: .06; } 14%, 86% { fill-opacity: .9; } 94%, 100% { fill-opacity: .06; } }
-  @keyframes rays { 0%, 8% { opacity: 0; transform: scale(.85); } 18% { opacity: 1; transform: scale(1); }
-    50% { opacity: .55; transform: scale(1.04); } 84% { opacity: 1; transform: scale(1); } 92%, 100% { opacity: 0; transform: scale(.85); } }
-  @keyframes filament { 0%, 6% { stroke: #6b5a3a; } 14%, 86% { stroke: #fff4d6; } 94%, 100% { stroke: #6b5a3a; } }
+  /* electricity: the bulb fades up and down on its own gentle 2.6 s rhythm (a smooth fade, never a flash) */
+  .glow { animation: glow 2.6s ease-in-out infinite; }
+  .lit { animation: lit 2.6s ease-in-out infinite; }
+  .rays { animation: rays 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 50%; }
+  .filament { animation: filament 2.6s ease-in-out infinite; }
+  @keyframes glow { 0%, 100% { opacity: .08; } 45%, 60% { opacity: .9; } }
+  @keyframes lit { 0%, 100% { fill-opacity: .12; } 45%, 60% { fill-opacity: .92; } }
+  @keyframes rays { 0%, 100% { opacity: 0; transform: scale(.88); } 45%, 60% { opacity: 1; transform: scale(1); } }
+  @keyframes filament { 0%, 100% { stroke: #6b5a3a; } 45%, 60% { stroke: #fff4d6; } }
 
   @media (prefers-reduced-motion: reduce) {             /* still frame: full glass, bulb on */
     .stream, .fill, .bubble, .drop, .glow, .lit, .rays, .filament { animation: none; }

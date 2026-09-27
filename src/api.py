@@ -36,6 +36,17 @@ _state_lock = asyncio.Lock()
 
 
 @app.middleware("http")
+async def revalidate_pages(request: Request, call_next):
+    """Pages, CSS and JS: browsers must check for a newer version (a cheap 304 when unchanged), so a redeploy is
+    seen at once instead of an old cached stylesheet or script."""
+    response = await call_next(request)
+    path = request.url.path
+    if path.startswith("/static/") or path in ("/", "/home", "/desk", "/impact", "/customer"):
+        response.headers.setdefault("Cache-Control", "no-cache")
+    return response
+
+
+@app.middleware("http")
 async def carry_demo_state(request: Request, call_next):
     if not demo_state.ENABLED or not request.url.path.startswith(STATEFUL):
         return await call_next(request)

@@ -12,7 +12,8 @@
   @media (max-width: 1280px) { .desk { grid-template-columns: 270px minmax(0, 1fr) 350px; } }
   .desk.legacy { grid-template-columns: minmax(0, 1fr) 400px; }
   .desk.legacy #intake-panel { display: none; }
-  @media (max-width: 1000px) { .desk { grid-template-columns: 1fr; } }
+  @media (max-width: 1000px) { .desk, .desk.legacy { grid-template-columns: minmax(0, 1fr); } .desk { padding: 10px; gap: 10px; }
+    .desk > * { min-width: 0; } }   /* the legacy hop row scrolls inside its panel instead of widening the page */
   .col { padding: 16px 18px; }
 
   /* intake */
